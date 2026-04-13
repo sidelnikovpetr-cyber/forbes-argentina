@@ -301,7 +301,7 @@ NIR por metodologia del FMI: aprox. <span class="n">−$12.8 mil millones</span>
 <!-- CHART: ENERGY TRADE BALANCE -->
 <div class="cb">
   <div class="ct">Balanza comercial energetica: de importador a exportador</div>
-  <div class="cs">USD miles de mill. Superavit — violeta, deficit — rojo. La linea punteada separa datos reales del pronostico.</div>
+  <div class="cs">USD mil millones Superavit — violeta, deficit — rojo. La linea punteada separa datos reales del pronostico.</div>
   <div class="cw"><canvas id="c3"></canvas></div>
   <div class="cf">Fuentes: INDEC (real), Deloitte, Brazil Energy Insight (pronostico). Calculos del autor.</div>
 </div>
@@ -525,7 +525,7 @@ const mb1d=[44.9,44.8,43.6,43.6,42.6,43.2,43.4,42.8,41.4,39.9,38.7,39.4,39.5,39.
 new Chart(document.getElementById('mb1'),{type:'line',data:{labels:mbL,datasets:[
   {data:mb1d,borderColor:'#7c3aed',borderWidth:2.2,backgroundColor:'rgba(124,58,237,0.12)',fill:true,
    pointRadius:mb1d.map((_,i)=>i===mb1d.length-1?4:0),pointBackgroundColor:'#7c3aed',pointBorderColor:'#fff',pointBorderWidth:1.5}
-]},options:mbOpts('Reservas','USD miles mill.'),plugins:[mbEndPlugin('#7c3aed',v=>'$'+v.toFixed(1)+'bn')]});
+]},options:mbOpts('Reservas','USD mil millones'),plugins:[mbEndPlugin('#7c3aed',v=>'$'+v.toFixed(1)+' mM')]});
 
 // MB2: Monthly Inflation
 const mbInfl=[2.3,2.0,3.3,1.5,1.5,2.2,1.9,2.7,2.8,3.8,3.2,4.0,4.0,3.6,4.8,4.1,3.3,3.2,3.0,2.5,3.5,3.5,2.5,3.8,3.9,4.7,6.7,6.0,5.1,5.3,7.4,7.0,6.2,6.3,4.9,5.1,6.0,6.6,7.7,8.4,7.8,6.0,6.3,12.4,12.7,8.3,12.8,25.5,20.6,13.2,11.0,8.8,4.2,4.6,4.0,4.2,3.5,2.7,2.4,2.7,2.2,2.4,3.7,2.8,1.5,1.6,1.9,1.9,2.1,2.3,2.5,2.8,2.9,2.9];
@@ -617,7 +617,7 @@ new Chart(document.getElementById('c2'),{type:'bar',data:{labels:c2Labels,datase
       grid:{color(ctx){if(!ctx.tick)return'transparent';const i=ctx.index;if(i>=C2D.length)return'transparent';return parseYM(C2D[i].d).m===0?'rgba(0,0,0,0.10)':'transparent';}}},
     y:{position:'left',ticks:{callback:v=>(v>=0?'+':'')+v,font:{family:MF,size:11},color:'#777',stepSize:10,padding:6},
       grid:{display:false},min:-30,max:80,
-      title:{display:true,text:'USD miles mill.',font:{family:MF,size:10,weight:'500'},color:'#aaa',padding:4}}
+      title:{display:true,text:'USD mil millones',font:{family:MF,size:10,weight:'500'},color:'#aaa',padding:4}}
   }
 },plugins:[
   {id:'c2yr',afterDraw(chart){const ctx=chart.ctx,area=chart.chartArea,meta=chart.getDatasetMeta(0);if(!meta.data.length)return;
@@ -654,7 +654,7 @@ new Chart(document.getElementById('c3'),{type:'bar',data:{labels:eY,datasets:[
       label:{content:'\u2190 real | pron\u00f3stico \u2192',display:true,position:'start',font:{size:9,family:MF},color:GREY_LT,backgroundColor:'#fff',padding:3}}
   }}},
   scales:{x:{grid:noGrid},
-    y:{ticks:{callback:v=>(v>=0?'+':'')+v},grid:{display:false},title:axTitle('USD miles mill.')}}
+    y:{ticks:{callback:v=>(v>=0?'+':'')+v},grid:{display:false},title:axTitle('USD mil millones')}}
 },plugins:[barLabels]});
 
 // ═══ C4: OIL + LITHIUM ═══
