@@ -104,9 +104,13 @@ tr.hl td:first-child{color:#7c3aed}
   .cb { margin: 28px -12px; padding: 16px 8px 12px; border-radius: 0; border-left: none; border-right: none; }
   .cb .cw { height: 280px; }
   .cw-nir { height: 400px !important; }
+  .cw-fs { height: 340px !important; }
   div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
   div[style*="grid-template-columns:1fr 1fr"] > div { height: 200px !important; }
   .tw { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { font-size: 13px; }
+  thead th { font-size: 9px; padding: 8px 4px; white-space: nowrap; }
+  tbody td { padding: 10px 4px; font-size: 12px; }
 }
 </style>
 </head>
@@ -488,18 +492,18 @@ const fsColors=fsYears.map(y=>{const n=+y;if(n<=2015)return'#2d7dd2';if(n<=2019)
 const fsBorders=fsColors.map((_,i)=>{const n=+fsYears[i];if(n<=2015)return'#1a5fa0';if(n<=2019)return'#b88510';if(n<=2023)return'#7f1d1d';return'#5b21b6';});
 new Chart(document.getElementById('fs'),{type:'bar',data:{labels:fsYears,datasets:[
   {data:fsVals,backgroundColor:fsColors,borderColor:fsBorders,borderWidth:1,barPercentage:0.7,borderRadius:2}
-]},options:{...BASE,layout:{padding:{top:20,bottom:14}},
+]},options:{...BASE,layout:{padding:{top:20,bottom:36}},
   plugins:{legend:{display:false},annotation:{annotations:{
     zero:refLine(0,null,NAVY)
   }}},
   scales:{x:{grid:noGrid},y:{grid:{display:false},title:axTitle('Balance primario (% PIB)')}}
 },plugins:[barLabels,{id:'fsEra',afterDraw(chart){
   const ctx=chart.ctx,area=chart.chartArea,meta=chart.getDatasetMeta(0);if(!meta.data.length)return;
-  ctx.save();ctx.font='400 9px '+MS;ctx.textAlign='center';ctx.textBaseline='top';const yP=area.bottom+27;
+  ctx.save();ctx.font='400 9px '+MS;ctx.textAlign='center';ctx.textBaseline='top';const yP=area.bottom+44;
   const eras=[{s:0,e:4,t:'Kirchner II',c:'#2d7dd2'},{s:5,e:8,t:'Macri',c:'#e0a520'},{s:9,e:12,t:'Fern\u00e1ndez',c:'#b91c1c'},{s:13,e:14,t:'Milei',c:'#7c3aed'}];
   eras.forEach(er=>{if(!meta.data[er.s]||!meta.data[er.e])return;
     const x1=meta.data[er.s].x,x2=meta.data[er.e].x,cx=(x1+x2)/2;
-    ctx.fillStyle=er.c;ctx.fillRect(x1-2,area.bottom+24,(x2-x1)+4,2.5);
+    ctx.fillStyle=er.c;ctx.fillRect(x1-2,area.bottom+40,(x2-x1)+4,2.5);
     ctx.fillText(er.t,cx,yP);});
   ctx.restore();}}]});
 
