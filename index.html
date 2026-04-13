@@ -99,8 +99,11 @@ tr.hl td:first-child{color:#7c3aed}
 }
 /* ── Mobile ── */
 @media (max-width: 768px) {
-  .a { padding: 40px 16px 60px; }
-  h1 { font-size: 28px; }
+  .a { max-width: 100%; padding: 32px 12px 60px; }
+  h1 { font-size: 26px; }
+  .cb { margin: 28px -12px; padding: 16px 8px 12px; border-radius: 0; border-left: none; border-right: none; }
+  .cb .cw { height: 280px; }
+  .cw-nir { height: 400px !important; }
   div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
   div[style*="grid-template-columns:1fr 1fr"] > div { height: 200px !important; }
   .tw { overflow-x: auto; -webkit-overflow-scrolling: touch; }
