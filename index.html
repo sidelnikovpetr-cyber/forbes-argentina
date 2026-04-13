@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Paradoja de Milei — Forbes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha384-bs/nf9FbdNouRbMiFcrcZfLXYPKiPaGVGplVbv7dLGECccEXDW+S3zjqSKR5ZEaD" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.0.1/chartjs-plugin-annotation.min.js" integrity="sha384-oNtu+d18330MVFpltUTve1DatxCkkctlpA2AC3GulbVFOSqhHdDat3qHse/Lbuek" crossorigin="anonymous"></script>
+<style>
+:root{
+  --navy:#1a1a2e;--blue:#1e40af;--blue-lt:rgba(30,64,175,0.10);
+  --orange:#c2410c;--orange-lt:rgba(194,65,12,0.10);
+  --green:#047857;--green-lt:rgba(4,120,87,0.08);
+  --red:#b91c1c;--grey:#64748b;--grey-lt:#94a3b8;
+  --grid:rgba(0,0,0,0.05);--rule:#e2e8f0;--bg-card:#fafbfc;
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono','SF Mono',monospace;
+  --serif:'Source Serif 4',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--serif);color:var(--navy);background:#fff;line-height:1.85;font-size:17px}
+.a{max-width:760px;margin:0 auto;padding:60px 24px 80px}
+.kicker{font-family:var(--sans);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--blue);margin-bottom:12px}
+h1{font-size:34px;font-weight:700;line-height:1.2;color:var(--navy);margin-bottom:8px;letter-spacing:-0.5px}
+.sub{font-size:19px;color:var(--grey);font-weight:400;line-height:1.4;margin-bottom:24px}
+.by{font-family:var(--sans);font-size:14px;color:var(--grey-lt);margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.by strong{color:#475569}
+p{margin-bottom:20px}
+.lead{font-size:17px;line-height:1.85;color:#334155}
+h2{font-family:var(--sans);font-size:21px;font-weight:700;color:var(--navy);margin:42px 0 16px;padding-top:12px;border-top:2px solid var(--rule)}
+.q{background:#f8fafc;border-left:4px solid var(--blue);padding:20px 24px;margin:28px 0;font-style:italic;font-size:16px;line-height:1.7;color:#334155}
+.q cite{display:block;margin-top:8px;font-size:13px;font-style:normal;color:var(--grey-lt);font-family:var(--sans)}
+.n{font-family:var(--mono);font-weight:600}
+
+/* ── Tables (unified) ── */
+.tw{margin:32px 0;overflow-x:auto}
+.tt{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;text-transform:uppercase;letter-spacing:0.5px}
+.ts{font-family:var(--sans);font-size:11px;color:var(--grey-lt);margin-bottom:12px;line-height:1.6}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:15px}
+thead th{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:var(--grey);padding:12px 14px;text-align:center;border-bottom:2px solid var(--navy);border-top:2px solid var(--navy)}
+thead th:first-child{text-align:left}
+tbody td{padding:12px 14px;border-bottom:1px solid #f1f5f9;text-align:center;font-family:var(--mono);font-size:14px;color:#334155}
+tbody td:first-child{text-align:left;font-family:var(--sans);font-weight:600;color:var(--navy);font-size:15px}
+tbody tr:last-child td{border-bottom:1px solid var(--navy)}
+tr.hl{background:#f5f0ff}
+tr.hl td{font-weight:700;color:#7c3aed}
+tr.hl td:first-child{color:#7c3aed}
+.pos{color:var(--green);font-weight:700}
+.neg{color:var(--red)}
+
+/* Scorecard table */
+.sc{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:13px;margin:16px 0}
+.sc thead th{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:var(--grey);padding:8px 10px;border-bottom:2px solid var(--navy);border-top:2px solid var(--navy);text-align:center}
+.sc thead th:first-child{text-align:left}
+.sc thead th:nth-child(4){text-align:left}
+.sc thead th:nth-child(2){text-align:center;width:50px}
+.sc thead th:nth-child(3){text-align:center}
+.sc tbody td{padding:7px 10px;border-bottom:1px solid #f1f5f9;vertical-align:middle;font-size:12px}
+.sc tbody td:first-child{font-weight:600;color:var(--navy);font-size:13px}
+.sc tbody td:nth-child(2){text-align:center;font-family:var(--mono);font-weight:700;font-size:13px}
+.sc tbody td:nth-child(3){font-family:var(--mono);font-size:11px;color:var(--grey);text-align:center}
+.sc tbody td:nth-child(4){font-size:11px;color:var(--grey-lt);text-align:left}
+.sc tbody tr:last-child td{border-bottom:none}
+.sc-neg{color:var(--red)}
+.sc-pos{color:var(--green)}
+.sc-agg{background:#f0f4f8 !important;border-top:2px solid var(--navy);border-bottom:2px solid var(--navy)}
+.sc-agg td{font-weight:700 !important;font-size:13px !important;color:var(--navy)}
+.sc-agg td:nth-child(2){font-size:18px !important;color:var(--red)}
+
+/* ── Chart containers (unified) ── */
+.cb{margin:36px 0;background:var(--bg-card);border:1px solid #e8ecf1;border-radius:6px;padding:24px 24px 16px}
+.cb .ct{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;text-transform:uppercase;letter-spacing:0.3px}
+.cb .cs{font-family:var(--sans);font-size:11px;color:var(--grey-lt);margin-bottom:16px;line-height:1.5}
+.cb .cw{position:relative;height:300px}
+.cb .cf{font-family:var(--mono);font-size:9px;color:#b0b8c4;margin-top:10px;padding-top:8px;border-top:1px solid #eef1f5}
+.cw-nir{height:420px}
+
+.ft{margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:12px;color:var(--grey-lt);line-height:1.8}
+.disc{font-family:var(--sans);font-size:11px;color:#bbb;margin-top:20px;padding-top:12px;border-top:1px solid #f1f5f9;line-height:1.6}
+
+@media print{
+  @page{margin:12mm 10mm;size:A4}
+  body{font-size:15px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .a{max-width:760px;padding:40px 20px 60px}
+  .cb{break-inside:avoid;page-break-inside:avoid;overflow:visible;border-radius:0;border:none;padding:8px 0 0;margin:10px 0}
+  .cb .cw{height:250px !important;margin-bottom:2px}
+  .cb .cw-nir{height:310px !important}
+  .cb .cw-fs{height:308px !important}
+  .cb .cw-overlay{height:280px !important}
+  .cb .ct{font-size:11px;margin-bottom:0}
+  .cb .cs{font-size:9px;margin-bottom:4px}
+  .cb .cf{margin-top:2px;padding-top:2px;font-size:8px}
+  .tw{break-inside:avoid;page-break-inside:avoid}
+  .q{break-inside:avoid;page-break-inside:avoid}
+  h2{page-break-after:avoid}
+}
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  body { font-size: 15px; line-height: 1.7; }
+  .a { padding: 24px 16px 48px; }
+  h1 { font-size: 24px; }
+  .sub { font-size: 16px; }
+  h2 { font-size: 18px; margin: 32px 0 12px; }
+  .lead { font-size: 15px; }
+  .q { padding: 14px 16px; font-size: 14px; }
+  .cb { padding: 16px 12px 12px; margin: 24px 0; }
+  .cb .ct { font-size: 11px; }
+  .cb .cs { font-size: 10px; margin-bottom: 10px; }
+  .cb .cw { height: 220px; }
+  .cw-nir { height: 320px !important; }
+  .cb .cf { font-size: 8px; }
+  div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+  div[style*="grid-template-columns:1fr 1fr"] > div { height: 180px !important; }
+  .tw { margin: 20px -16px; padding: 0 16px; }
+  table { font-size: 12px; }
+  thead th { font-size: 10px; padding: 8px 6px; }
+  tbody td { padding: 8px 6px; font-size: 11px; }
+  tbody td:first-child { font-size: 12px; }
+  .sc { font-size: 11px; }
+  .sc thead th { font-size: 9px; padding: 6px 4px; }
+  .sc tbody td { padding: 5px 4px; font-size: 10px; }
+  .sc tbody td:first-child { font-size: 11px; }
+  .sc tbody td:nth-child(4) { font-size: 9px; }
+}
+</style>
+</head>
+<body>
+<article class="a">
+
+<div class="kicker">Inversiones</div>
+<h1>La paradoja de Milei: el unico superavit en America Latina, el riesgo mas caro</h1>
+<div class="sub">El unico superavit fiscal entre las grandes economias de la region. Pero el spread soberano argentino sigue siendo uno de los mas altos de America Latina, a pesar del creciente interes de los inversores en el carry trade.</div>
+<div class="by"><strong>Petr Sidelnikov</strong>, asset management, macro & credito soberano EM · Buenos Aires<br>Abril 2026</div>
+
+<p class="lead">Durante doce anos trabaje en asset management, los ultimos anos como director de la division de inversiones de un banco importante en Rusia. Hace dos anos me mude a Buenos Aires, obtuve un MBA en IAE Business School y comence a estudiar la economia argentina desde adentro, con datos del BCRA e INDEC y en conversaciones con gestores locales.</p>
+
+<p class="lead">Lo que ocurre hoy en Argentina es un experimento macroeconomico poco frecuente en la region. Los indicadores mejoran rapidamente, pero el mercado sigue valorando el riesgo argentino como si la crisis aun estuviera por venir. Argentina es la unica gran economia de America Latina que cerro 2025 con superavit fiscal global. Y, sin embargo, su spread soberano sigue siendo el mas alto de la region. La magnitud de esta brecha se aprecia en una sola tabla.</p>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- §1. PARADOJA                               -->
+<!-- ═══════════════════════════════════════════ -->
+<h2>Una tabla, una paradoja</h2>
+
+<div class="tw">
+<div class="tt">Grandes economias de America Latina: disciplina fiscal vs valoracion de riesgo del mercado</div>
+<div class="ts">Balance fiscal — ano completo 2025, datos de ministerios de finanzas. Deuda publica — IMF WEO (Oct 2025). EMBI — 31.03.2026.</div>
+<table style="table-layout:fixed">
+<colgroup><col style="width:22%"><col style="width:18%"><col style="width:18%"><col style="width:14%"><col style="width:14%"><col style="width:14%"></colgroup>
+<thead><tr><th>Pais</th><th>Balance<br>primario</th><th>Balance<br>global</th><th>Deuda<br>% PIB</th><th>Servicio<br>deuda</th><th>EMBI<br>pb</th></tr></thead>
+<tbody>
+<tr class="hl"><td>Argentina</td><td class="pos">+1.4%</td><td class="pos">+0.2%</td><td>79%</td><td>1.2%</td><td>617</td></tr>
+<tr><td>Brasil</td><td class="pos">+0.4%</td><td class="neg">−8.3%</td><td>91%</td><td>7.9%</td><td>197</td></tr>
+<tr><td>Mexico</td><td class="neg">−0.2%</td><td class="neg">−4.3%</td><td>59%</td><td>4.1%</td><td>233</td></tr>
+<tr><td>Peru</td><td class="neg">−0.6%</td><td class="neg">−2.2%</td><td>32%</td><td>1.6%</td><td>139</td></tr>
+<tr><td>Chile</td><td class="neg">−1.8%</td><td class="neg">−2.8%</td><td>43%</td><td>1.0%</td><td>102</td></tr>
+<tr><td>Colombia</td><td class="neg">−3.5%</td><td class="neg">−6.4%</td><td>59%</td><td>2.9%</td><td>282</td></tr>
+</tbody>
+</table>
+<div class="ts" style="margin-top:8px">Balance primario = ingresos − gastos sin servicio de deuda. Balance global = incluyendo intereses de deuda. EMBI — diferencia de rendimiento entre bonos soberanos del pais y bonos del Tesoro de EE.UU. (pb).<br>
+Fuentes: Argentina — Secretaria de Hacienda; Brasil — BCB (SGS 5793, 5727); Mexico — SHCP (Comunicado 25, Ene 2026); Peru — BCRP (Nota de Estudios 06-2026); Chile — DIPRES (IFP Q4 2025, Cuadro I.5.1); Colombia — MinHacienda (Plan Financiero 2026). Deuda publica: IMF WEO (Oct 2025). EMBI: JPMorgan EMBI Global.</div>
+</div>
+
+<p>Brasil tambien tiene superavit primario, pero destina <span class="n">7.9%</span> del PIB al servicio de deuda y en definitiva registra un deficit global de <span class="n">−8.3%</span>. Aun asi, su prima de riesgo pais es tres veces menor que la argentina. Argentina es la unica gran economia de la region que cerro en positivo incluso contando los intereses. El mercado de deuda soberana no valora la disciplina actual, sino la probabilidad de que se mantenga.</p>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- §2. HISTORIA                               -->
+<!-- ═══════════════════════════════════════════ -->
+<h2>Sesenta anos de la misma enfermedad</h2>
+
+<div class="q">
+  «Todos estos eventos — crisis de balanza de pagos, tres hiperinflaciones, dos defaults y tres crisis bancarias — son sintomas de un mismo problema recurrente: la incapacidad de Argentina para controlar el deficit fiscal.»
+  <cite>Buera & Nicolini, "The Monetary and Fiscal History of Argentina, 1960–2017"</cite>
+</div>
+
+<p>En seis decadas se le quitaron trece ceros a la moneda. Tres defaults en veinte anos. En la literatura, este ciclo se denomina ERBS (exchange rate-based stabilization): ancla cambiaria, desinflacion rapida, apreciacion del peso, boom, crisis. Argentina lo transito en 1958, 1976, 1985 y 1991. El periodo de Macri (2016–2019), aunque sin ancla cambiaria formal, siguio una trayectoria similar. Cada vez la causa fue la misma: el deficit fiscal que socavaba la confianza en la moneda.</p>
+
+<p>Milei es el primero que intento romper este ciclo atacando la causa y no los sintomas.</p>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- §3. QUE HIZO MILEI                         -->
+<!-- ═══════════════════════════════════════════ -->
+<h2>Que hizo Milei</h2>
+
+<p>Javier Milei llego al poder en diciembre de 2023 y apunto exactamente a lo que senalaban Buera y Nicolini: el deficit fiscal cronico.</p>
+
+<p>El resultado: dos anos consecutivos de superavit primario, por primera vez desde 2008: <span class="n">1.8%</span> del PIB en 2024 y <span class="n">1.4%</span> en 2025. Ademas, con reduccion simultanea de la carga impositiva — eliminacion del impuesto a las operaciones cambiarias, reduccion de retenciones a las exportaciones.</p>
+
+<!-- CHART: FISCAL SWITCH -->
+<div class="cb">
+  <div class="ct">El giro fiscal</div>
+  <div class="cs">Balance primario (% del PIB) por presidencia.</div>
+  <div class="cw cw-fs"><canvas id="fs"></canvas></div>
+  <div class="cf">Fuente: Secretaria de Hacienda (2016–2025), IMF WEO (2011–2015). Balance primario = ingresos − gastos sin servicio de deuda.</div>
+</div>
+
+<p>El costo de esta consolidacion fue un recorte agudo del gasto publico: jubilaciones, subsidios, transferencias a las provincias. La economia pago con recesion: el PIB cayo <span class="n">1.6%</span> en 2023 (aun con Fernandez) y <span class="n">1.3%</span> en el primer ano de Milei. Pero en 2025 el crecimiento regreso: <span class="n">+4.4%</span>. En octubre de ese ano, Milei supero su primera prueba electoral: en las elecciones de medio termino, la coalicion obtuvo suficientes bancas para bloquear vetos, asegurando una ventana politica para continuar las reformas.</p>
+
+<p>La magnitud de los cambios se ve en los cuatro graficos a continuacion. La linea punteada marca la asuncion de Milei (diciembre 2023). Antes: inflacion de <span class="n">25%</span> mensual, brecha cambiaria (diferencia entre el tipo de cambio oficial y el de mercado) de <span class="n">150%</span>, EMBI <span class="n">2500+</span> pb. Despues: inflacion <span class="n">~3%</span>, brecha <span class="n">≈0%</span>, EMBI <span class="n">617</span> pb.</p>
+
+<!-- CHART: MILEI BREAK 4-PANEL -->
+<div class="cb">
+  <div class="ct">El quiebre de Milei (diciembre 2023)</div>
+  <div class="cs">Cuatro indicadores clave desde 2020. Linea punteada = asuncion. Cada indicador se revirtio.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div style="position:relative;height:220px"><canvas id="mb1"></canvas></div>
+    <div style="position:relative;height:220px"><canvas id="mb2"></canvas></div>
+    <div style="position:relative;height:220px"><canvas id="mb3"></canvas></div>
+    <div style="position:relative;height:220px"><canvas id="mb4"></canvas></div>
+  </div>
+  <div class="cf">Fuente: BCRA, INDEC (IPCBA), ArgentinaDatos. Linea punteada = asuncion de Milei (dic. 2023). Datos al 31.03.2026.</div>
+</div>
+
+<p>Las cifras impresionan. Pero el riesgo pais dice: el mercado no creyo. Tres razones.</p>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- §4. POR QUE NO CREE                       -->
+<!-- ═══════════════════════════════════════════ -->
+<h2>Por que el mercado todavia no cree</h2>
+
+<p>Primera: el peso esta sobrevaluado. El tipo de cambio real efectivo (REER) — indicador de cuan cara es la moneda en relacion con las de los socios comerciales ajustado por inflacion — en febrero se ubicaba aproximadamente un <span class="n">13%</span> por encima de su promedio de ocho anos. Y la brecha crece rapido: en enero era de alrededor de <span class="n">9%</span>.</p>
+
+<p>Una moneda sobrevaluada comprime las exportaciones y estimula las importaciones. La dinamica trimestral de la cuenta corriente aun mejora: <span class="n">−5.6 → −2.8 → −1.6 → +2.3 mil millones</span> de dolares (INDEC). Pero la mejora se da a pesar del tipo de cambio: las importaciones en 2025 crecieron <span class="n">25%</span>, y la dinamica positiva la sostiene la exportacion energetica (Vaca Muerta).</p>
+
+<p>Pero en terminos anuales, la cuenta corriente (comercio + servicios + servicio de deuda) sigue siendo negativa: alrededor de <span class="n">$7.7 mil millones</span> El superavit comercial se consume parcialmente en el gasto de los argentinos en el exterior (el dolar barato estimula el turismo emisivo) y en pagos de deuda externa.</p>
+
+<p>La segunda razon es la estructura de las reservas internacionales.</p>
+
+<p>La cifra oficial del BCRA a fin de febrero de 2026 luce impresionante: <span class="n">$45.6 mil millones</span> de reservas brutas (para fin de marzo bajaron a <span class="n">$42.1 mil millones</span> por pagos de deuda). Pero una parte significativa de estos fondos no puede usarse libremente para defender el tipo de cambio.</p>
+
+<p>En la cifra titular se incluyen oro, encajes obligatorios de los bancos comerciales, el swap de divisas con el Banco Popular de China, fondos del seguro de depositos (SEDESA), asi como operaciones de repo y creditos de organismos internacionales.</p>
+
+<p>Si se descuentan sucesivamente estos componentes (segun datos del BCRA NEDD de febrero 2026), el panorama es diferente:</p>
+<div style="font-family:var(--sans);font-size:15px;color:#334155;margin:16px 0 20px 0;line-height:2;padding-left:8px;border-left:3px solid var(--rule)">
+FX Liquidity (sin oro ni encajes): aprox. <span class="n">$18.2 mil millones</span><br>
+NIR — reservas netas por convencion de mercado: aprox. <span class="n">$2.1 mil millones</span><br>
+NIR ajustadas (obligaciones con importadores + creditos FMI/BIS): aprox. <span class="n">−$11.0 mil millones</span><br>
+NIR por metodologia del FMI: aprox. <span class="n">−$12.8 mil millones</span>
+</div>
+
+<p>La brecha entre el titular y la liquidez disponible supera los <span class="n">$50 mil millones</span></p>
+
+<p>El grafico a continuacion muestra la dinamica de doce anos de cinco metricas distintas de reservas y su comportamiento durante tres programas del FMI.</p>
+
+<!-- CHART: NIR DECOMPOSITION -->
+<div class="cb">
+  <div class="ct">Reservas internacionales netas: descomposicion (2014 – febrero 2026)</div>
+  <div class="cs">Fondo gris — reservas brutas (non-gold + gold). Lineas: FX Liquidity (brutas menos oro y encajes), NIR (convencion de mercado), Adjusted NIR (estricto), NIR IMF (por metodologia TMU). Zonas: programas del FMI (SBA 2018, EFF 2022, EFF 2025).</div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;font-family:var(--sans);font-size:11px;color:#555">
+    <span><span style="display:inline-block;width:14px;height:10px;background:rgba(170,176,184,0.35);border-radius:1px;vertical-align:middle;margin-right:3px"></span>Gross Reserves</span>
+    <span><span style="display:inline-block;width:14px;height:10px;background:rgba(201,168,76,0.35);border-radius:1px;vertical-align:middle;margin-right:3px"></span>Gold</span>
+    <span><span style="display:inline-block;width:18px;height:3px;background:#0ea5e9;border-radius:1px;vertical-align:middle;margin-right:3px"></span>FX Liquidity</span>
+    <span><span style="display:inline-block;width:18px;height:3px;background:var(--blue);border-radius:1px;vertical-align:middle;margin-right:3px"></span>NIR</span>
+    <span><span style="display:inline-block;width:18px;height:0;border-top:2px dashed var(--red);vertical-align:middle;margin-right:3px"></span>Adjusted NIR</span>
+    <span><span style="display:inline-block;width:18px;height:0;border-top:2px dashed var(--green);vertical-align:middle;margin-right:3px"></span>NIR IMF</span>
+  </div>
+  <div class="cw cw-nir"><canvas id="c2"></canvas></div>
+  <div class="cf">Fuente: BCRA, IMF EFF TMU, FRED. Calculos del autor. Datos al 28.02.2026.</div>
+</div>
+
+<p>La tercera razon es la memoria historica del mercado. Mauricio Macri tambien comenzo como reformista: las reservas crecieron a $62 mil millones y el credito de confianza del FMI alcanzo los $57 mil millones Pero casi todo se perdio en menos de dos anos. Para el mercado, cada reformista argentino es culpable hasta que se demuestre lo contrario.</p>
+
+<p>Los dos graficos a continuacion lo muestran con claridad. Ambos estan alineados en t=0: inicio de la presidencia de Macri (diciembre 2015) y de Milei (diciembre 2023). Una salvedad importante: Macri elimino las restricciones cambiarias (cepo) en su primer mes, por lo que su REER era de mercado. Milei mantuvo el cepo hasta abril de 2025 (t+16), y la apreciacion del REER en ese periodo refleja en parte un tipo de cambio administrado. Un estudio de Brookings muestra que las estabilizaciones realizadas con controles de capital vigentes historicamente se acompanan de una recuperacion mas debil de la inversion.</p>
+
+<!-- CHART: REER OVERLAY -->
+<div class="cb">
+  <div class="ct">Tipo de cambio real efectivo: Macri vs Milei</div>
+  <div class="cs">Indice REER (t0=100). Rojo — Macri: devaluacion al asumir, luego apreciacion hasta t+30, despues colapso. Violeta — Milei: devaluacion de shock, luego apreciacion rapida. En t+26 el peso esta mas caro que con Macri en el mismo momento.</div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;font-family:var(--sans);font-size:11px;color:#555">
+    <span><span style="display:inline-block;width:18px;height:3px;background:#b91c1c;border-radius:1px;vertical-align:middle;margin-right:3px"></span>Macri (t0 = Dec 2015)</span>
+    <span><span style="display:inline-block;width:18px;height:3px;background:#7c3aed;border-radius:1px;vertical-align:middle;margin-right:3px"></span>Milei (t0 = Dec 2023)</span>
+  </div>
+  <div class="cw cw-overlay"><canvas id="c7"></canvas></div>
+  <div class="cf">Fuente: BIS REER. Calculos del autor. t0: Macri = Dec 2015, Milei = Dec 2023.</div>
+</div>
+
+<!-- CHART: FISCAL OVERLAY -->
+<div class="cb">
+  <div class="ct">Balance primario acumulado: Macri vs Milei</div>
+  <div class="cs">Balance primario acumulado desde t0, ARS reales (precios dic. 2023). Rojo — Macri: acumulacion continua de deficit. Violeta — Milei: superavit desde el primer mes.</div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;font-family:var(--sans);font-size:11px;color:#555">
+    <span><span style="display:inline-block;width:18px;height:3px;background:#b91c1c;border-radius:1px;vertical-align:middle;margin-right:3px"></span>Macri (t0 = Dec 2015)</span>
+    <span><span style="display:inline-block;width:18px;height:3px;background:#7c3aed;border-radius:1px;vertical-align:middle;margin-right:3px"></span>Milei (t0 = Dec 2023)</span>
+  </div>
+  <div class="cw cw-overlay"><canvas id="c8"></canvas></div>
+  <div class="cf">Fuente: Hacienda, deflactor IPCBA. Calculos del autor. t0: Macri = Dec 2015, Milei = Dec 2023.</div>
+</div>
+
+<p>Los graficos cuentan dos historias a la vez. La trayectoria fiscal de Milei es diametralmente opuesta a la de Macri: superávit de +10,2 mil millones ARS en los primeros 26 meses contra un déficit de −22,6 mil millones en el mismo periodo. Pero la dinamica del tipo de cambio real genera preocupacion: el peso se aprecio mas rapido y ya esta mas caro que con Macri en la misma etapa de su presidencia. Fue precisamente la sobrevaluacion del REER lo que termino socavando la sostenibilidad macroeconomica del gobierno de Macri hacia el final de su tercer ano.</p>
+
+<p>Tres razones para el escepticismo — tres capas de riesgo. Pero Milei cuenta con herramientas de las que ninguno de sus predecesores dispuso en esta magnitud.</p>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- §4.5. NUEVAS ANCLAS                        -->
+<!-- ═══════════════════════════════════════════ -->
+<h2>Nuevas anclas: remonetizacion y seguro desde Washington</h2>
+
+<p>En diciembre de 2025, el BCRA lanzo un programa de acumulacion de reservas vinculado a la remonetizacion de la economia: a medida que crece la demanda de pesos, el banco central compra dolares en el mercado abierto. En el primer trimestre de 2026 se compraron <span class="n">$4.4 mil millones</span> Pero el Ministerio de Economia destino <span class="n">$3.7 mil millones</span> al servicio de la deuda soberana, y el crecimiento de otras obligaciones absorbio el resto, con lo que las reservas netas volvieron a terreno negativo a fin de marzo. El banco central llena un balde que el gobierno vacia de inmediato. Segun la estimacion de Consultora 1816, a fin de marzo las reservas netas por metodologia de mercado (NIR) se ubicaban en torno a <span class="n">−$2.7 mil millones</span></p>
+
+<p>En paralelo aparecio otra ancla: en octubre de 2025, el Tesoro de EE.UU. abrio a Argentina una linea swap de <span class="n">$20 mil millones</span> a traves del Exchange Stabilization Fund — la primera de esta magnitud desde el paquete mexicano de 1995. Argentina ya utilizo y devolvio integramente <span class="n">$2.5 mil millones</span> antes de fin de ano. La linea permanece activa. Junto con el programa del FMI (<span class="n">$20 mil millones</span> EFF, abril 2025), esto crea una red de seguridad que Argentina nunca antes habia tenido.</p>
+
+<p>Pero el solo hecho de que el pais haya necesitado una linea swap de emergencia de Washington habla de la magnitud de la fragilidad. El programa de acumulacion de reservas aun no modifica la aritmetica fundamental: las reservas brutas crecen, pero las netas no. El mercado ve ambos numeros.</p>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- §5. TRES ASES                              -->
+<!-- ═══════════════════════════════════════════ -->
+<h2>Tres ases que nunca antes funcionaron a esta escala</h2>
+
+<p>El apoyo externo reduce el riesgo de shock, pero no genera divisas. La respuesta de largo plazo a la pregunta central de los reformistas argentinos — de donde sacar dolares mientras las reformas aun no rinden frutos — reside en la base de recursos. Justamente ahora, por primera vez, esta alcanza una escala capaz de modificar la balanza de pagos del pais.</p>
+
+<p>Vaca Muerta. Argentina posee las segundas reservas mundiales de gas de esquisto y las cuartas de petroleo de esquisto. La produccion crecio de <span class="n">600</span> mil barriles diarios en 2022 a <span class="n">870</span> mil en 2025. Proyeccion del sector: <span class="n">1–1.5 mill.</span> b/d para 2030. La balanza comercial energetica paso de un deficit de <span class="n">−$4.4 mil millones</span> (2022) a un superavit record de <span class="n">+$7.8 mil millones</span> (2025). Segun Deloitte, los ingresos de divisas por energia podrian alcanzar los <span class="n">$19 mil millones</span> anuales para 2030.</p>
+
+<!-- CHART: ENERGY TRADE BALANCE -->
+<div class="cb">
+  <div class="ct">Balanza comercial energetica: de importador a exportador</div>
+  <div class="cs">USD miles de mill. Superavit — violeta, deficit — rojo. La linea punteada separa datos reales del pronostico.</div>
+  <div class="cw"><canvas id="c3"></canvas></div>
+  <div class="cf">Fuentes: INDEC (real), Deloitte, Brazil Energy Insight (pronostico). Calculos del autor.</div>
+</div>
+
+<p>Litio. Argentina integra el "triangulo del litio" (con Chile y Bolivia), la mayor concentracion de reservas de litio del mundo. La capacidad de produccion crecio un <span class="n">148%</span> entre 2023 y 2025. Segun JPMorgan, para 2030 el pais sera el tercer productor despues de Australia y China. Siete grandes proyectos ya estan en ejecucion: Rio Tinto, POSCO, Ganfeng Lithium, Zijin Mining.</p>
+
+<p>Cobre. La reforma de la legislacion minera abre el camino a exportaciones por <span class="n">$5–6.5 mil millones</span> para 2030, provenientes de yacimientos en las provincias de San Juan y Catamarca (proyectos Josemaria, Los Azules, MARA).</p>
+
+<!-- CHART: OIL + LITHIUM -->
+<div class="cb">
+  <div class="ct">Trayectorias de produccion: petroleo y litio</div>
+  <div class="cs">Violeta: produccion de petroleo (miles b/d, eje izquierdo). Rojo: capacidad de litio (miles ton LCE/ano, eje derecho). Linea punteada — pronostico.</div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;font-family:var(--sans);font-size:11px;color:#555">
+    <span><span style="display:inline-block;width:18px;height:3px;background:#7c3aed;border-radius:1px;vertical-align:middle;margin-right:3px"></span>Petroleo (miles b/d)</span>
+    <span><span style="display:inline-block;width:18px;height:3px;background:#b91c1c;border-radius:1px;vertical-align:middle;margin-right:3px"></span>Litio (miles t LCE/ano)</span>
+  </div>
+  <div class="cw"><canvas id="c4"></canvas></div>
+  <div class="cf">Fuentes: Secretaria de Energia, EIA, S&P Global (petroleo). BNamericas, Argus Media, JPMorgan (litio).</div>
+</div>
+
+<p>Los tres motores necesitan de 3 a 5 anos para alcanzar plena capacidad. La pregunta no es la base de recursos — esta confirmada. La pregunta es si la ventana politica alcanza para llegar a tiempo. El apoyo externo compra tiempo. Los recursos dan horizonte. Pero entre ambos hay una ventana de vulnerabilidad, y es precisamente en esa ventana donde al mercado se le ofrece el carry trade.</p>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- §6. CARRY TRADE                            -->
+<!-- ═══════════════════════════════════════════ -->
+<h2>Carry trade: narrativa atractiva, matematica quebrada</h2>
+
+<p>Con el superavit, la inflacion en baja y el potencial de recursos como telon de fondo, los grandes desks de sell-side — JPMorgan, Bank of America — promueven activamente el carry trade argentino — la ganancia por la alta tasa en pesos con tipo de cambio estable — como una de las mejores ideas en mercados emergentes. Superavit, inflacion cayendo, Vaca Muerta en el horizonte: la logica parece impecable. Los clientes compran. Los gestores asignan.</p>
+
+<p>Mi backtest de esta estrategia para el ciclo completo 2017–2026 no confirma el consenso.</p>
+
+<p>La mecanica es simple: endeudarse en dolares, convertir a pesos via el tipo de cambio de mercado (CCL), colocar a la tasa del banco central, reconvertir al mes. Desde diciembre de 2023, la estrategia rindio <span class="n">~19%</span> anual en dolares. Impresionante, hasta que se mira mas a fondo.</p>
+
+<p>Ajustando por riesgo soberano (spread EMBI como costo de cobertura), queda <span class="n">~7.5%</span> anual. Y para el ciclo completo 2017–2026 el cuadro es aun mas duro: la perdida promedio en un mes de crisis es <span class="n">2.3</span> veces mayor que la ganancia promedio en un buen mes.</p>
+
+<!-- CHART: CARRY CUMULATIVE -->
+<div class="cb">
+  <div class="ct">Carry trade en pesos: rendimiento nominal vs ajustado por riesgo</div>
+  <div class="cs">$100 invertidos en diciembre de 2023. Violeta — rendimiento nominal. Rojo — ajustado por riesgo soberano (EMBI). La brecha = "impuesto al riesgo", que rara vez se destaca en los materiales de marketing.</div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;font-family:var(--sans);font-size:11px;color:#555">
+    <span><span style="display:inline-block;width:18px;height:3px;background:#7c3aed;border-radius:1px;vertical-align:middle;margin-right:3px"></span>Rendimiento nominal</span>
+    <span><span style="display:inline-block;width:18px;height:3px;background:#b91c1c;border-radius:1px;vertical-align:middle;margin-right:3px"></span>Ajustado por riesgo (EMBI)</span>
+    <span><span style="display:inline-block;width:18px;height:0;border-top:2px dashed #94a3b8;vertical-align:middle;margin-right:3px"></span>$100 linea base</span>
+  </div>
+  <div class="cw"><canvas id="c5"></canvas></div>
+  <div class="cf">Carry calculado mensualmente a la tasa vigente BCRA 30d, tipo de cambio CCL. Risk-adjusted = menos EMBI/100/12. Periodo: diciembre 2023 — marzo 2026. Calculos del autor.</div>
+</div>
+
+<p>Pero el rendimiento realizado es pasado. Para entrar en la posicion hay que evaluar las condiciones actuales: volatilidad global, valuacion cambiaria, estado de la balanza de pagos. Los siete filtros que aplico para evaluar el atractivo del carry trade arrojan un composite score de <span class="n">−5</span> sobre un rango de ±14:</p>
+
+<div class="tw">
+<div class="tt">Scorecard: siete filtros para entrar en el carry trade</div>
+<table class="sc">
+<thead><tr><th>Filtro</th><th>Puntaje</th><th>Valor</th><th>Comentario</th></tr></thead>
+<tbody>
+<tr><td>Implied Vol (VIX/OVX)</td><td class="sc-neg">−2</td><td>VIX 2.7σ, OVX 4.2σ</td><td>Dos indicadores por encima del umbral de salida (2σ)</td></tr>
+<tr><td>Valuacion REER</td><td class="sc-neg">−1</td><td>+9–13% sobre promedio</td><td>Peso sobrevaluado (BIS, ene–feb 2026)</td></tr>
+<tr><td>Cuenta corriente</td><td class="sc-neg">−1</td><td>Trail 4Q: −$7.7 mil millones</td><td>Mejorando, pero aun en deficit</td></tr>
+<tr><td>Sorpresa de crecimiento del PIB</td><td class="sc-neg">−1</td><td>−1.8%</td><td>4to mes por debajo de expectativas</td></tr>
+<tr><td>Balanza comercial</td><td class="sc-neg">−1</td><td>+$11.3 mil millones (2025)</td><td>Pico de +$18.9 mil millones (2024) superado, import. +25%</td></tr>
+<tr><td>Spreads HY de EE.UU.</td><td class="sc-neg">−1</td><td>3.17%, en expansion</td><td>Ampliacion de HY golpea EMFX mas que el VIX</td></tr>
+<tr><td>Terminos de intercambio</td><td class="sc-pos">+2</td><td>ToT +3.2% Q1 2026 (est.)</td><td>Unico viento a favor</td></tr>
+<tr class="sc-agg"><td>COMPUESTO</td><td>−5</td><td>−5 / ±14</td><td>1 salida. 5 en contra. 1 a favor.</td></tr>
+</tbody>
+</table>
+<div class="ts">Fuentes: BCRA, INDEC, BIS, CBOE, CME, Bloomberg. Datos al 27.03.2026. Calculos del autor.</div>
+</div>
+
+<p>Un filtro (implied vol) esta al nivel de salida de la posicion. Cinco son viento en contra. Uno a favor. Con la volatilidad global actual, el carry no es una apuesta a Argentina. Es una apuesta a que en el proximo mes no pasara nada. Un solo shock borra medio ano de rendimiento.</p>
+
+<p>Significa esto que apostar a Argentina no tiene sentido? No. Pero el instrumento puede ser otro.</p>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- §7. BONOS                                  -->
+<!-- ═══════════════════════════════════════════ -->
+<h2>Bonos soberanos: otra matematica</h2>
+
+<p>Si el carry es una ruleta mensual sobre el tipo de cambio, los bonos soberanos son una apuesta a la compresion de spreads. Otro horizonte, otra mecanica, otro conjunto de riesgos.</p>
+
+<p>Argentina emite bonos soberanos en dolares en dos series. La diferencia entre ellas es clave para entender la curva a continuacion.</p>
+
+<p>Ley Argentina (AL): bonos bajo derecho argentino. En caso de reestructuracion, el gobierno puede modificar las condiciones a traves de la legislacion local. Asi procedio Kirchner en 2005 y 2010. Para el inversor, esto implica mayor riesgo juridico y mayor rendimiento en las duraciones cortas.</p>
+
+<p>Ley New York (GD): bonos bajo jurisdiccion del estado de Nueva York (serie Global). Protegidos por CAC (Collective Action Clauses) y sujetos al derecho estadounidense. La reestructuracion forzada es significativamente mas dificil: se requiere el acuerdo del 66.7–75% de los tenedores dependiendo del mecanismo. Es el estandar para inversores institucionales; los GD se negocian en las principales plazas. En el tramo largo de la curva, los GD ofrecen un rendimiento algo menor, pero con una proteccion juridica sustancialmente superior.</p>
+
+<p>En el tramo corto (hasta 2 anos), los AL rinden <span class="n">5.2–9.7%</span>, los GD <span class="n">6.5–8.2%</span>. La diferencia es pequena: con horizonte corto, la proteccion juridica es menos critica. En el tramo largo (5+ anos), los rendimientos convergen hacia <span class="n">~10%</span>; ahi el riesgo crediticio de Argentina domina sobre el juridico.</p>
+
+<!-- CHART: YIELD CURVE -->
+<div class="cb">
+  <div class="ct">Curva de rendimiento de bonos soberanos de Argentina (USD)</div>
+  <div class="cs">YTM vs Modified Duration. Violeta — ley Argentina (AL, derecho argentino). Rojo — ley New York (GD, derecho NY). Linea punteada — benchmarks de Brasil y Colombia.</div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;font-family:var(--sans);font-size:11px;color:#555">
+    <span><span style="display:inline-block;width:18px;height:3px;background:#7c3aed;border-radius:1px;vertical-align:middle;margin-right:3px"></span>Ley Argentina (AL)</span>
+    <span><span style="display:inline-block;width:18px;height:3px;background:#b91c1c;border-radius:1px;vertical-align:middle;margin-right:3px"></span>Ley New York (GD)</span>
+  </div>
+  <div class="cw"><canvas id="c6"></canvas></div>
+  <div class="cf">Fuente: Bonistas.com. Datos al 28.03.2026.</div>
+</div>
+
+<p>Con el spread actual de <span class="n">617</span> pb y superavit fiscal, la matematica esta del lado del comprador. Una compresion al nivel de Colombia (<span class="n">282</span> pb) implica aproximadamente un <span class="n">20%</span> de apreciacion en el tramo largo (GD46, modified duration ~6). Hasta el nivel de Brasil (<span class="n">197</span>), aun mas. La serie GD es preferible: en cualquier escenario de estres, la proteccion del derecho neoyorquino preserva el recovery value.</p>
+
+<p>Los riesgos persisten: fragilidad institucional, herencia de las restricciones cambiarias (cepo), reservas limitadas. Pero con un horizonte de 12 a 24 meses y mantenimiento de la disciplina fiscal, esta es una de las historias mas interesantes en el credito soberano de mercados emergentes.</p>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- §8. FINAL                                  -->
+<!-- ═══════════════════════════════════════════ -->
+<h2>Calculo en vez de esperanza</h2>
+
+<p>La Argentina de 2026 es la clasica brecha entre un diagnostico macroeconomico correcto y la desconfianza cronica del mercado. Un pais con disciplina fiscal ejemplar paga por el riesgo mas que vecinos con profundos deficits.</p>
+
+<p>Pero el riesgo argentino dejo de ser binario — "default o milagro". Se volvio calculable. Superavit, base de recursos, apoyo externo: todo es cuantificable. Al igual que la fragilidad de las reservas, la sobrevaluacion cambiaria y el calendario de pagos de deuda.</p>
+
+<p>En esta ecuacion, el carry trade sigue siendo una ruleta mensual: seis de siete filtros estan en contra. La deuda soberana es otra historia: el riesgo pais frente al unico superavit global de la region deja espacio para compresion, si las reformas se sostienen.</p>
+
+<p>En mi opinion, en la nueva Argentina la logica del acreedor resulta mas convincente que la del especulador cambiario.</p>
+
+
+<div class="ft">
+  <strong>Sobre el autor.</strong> Petr Sidelnikov — gestor de inversiones con 12 anos de experiencia en asset management. Fue director de la division de inversiones de un importante banco ruso. Graduado del MBA de IAE Business School (Universidad Austral, Argentina). Vive en Buenos Aires. Se especializa en macroeconomia y credito soberano de mercados emergentes.<br><br>
+  <strong>Fuentes.</strong> Datos fiscales: Secretaria de Hacienda (Argentina), Banco Central do Brasil (SGS 5793, 5727, 5760), SHCP (Mexico), BCRP (Peru, Nota de Estudios 06-2026), DIPRES (Chile, IFP Q4 2025), MinHacienda (Colombia). Deuda publica: IMF WEO (Oct 2025). EMBI: JPMorgan EMBI Global via Bloomberg Linea (31.03.2026). Reservas: BCRA (NEDD, Principales Variables), IMF EFF TMU. Otros: INDEC, Buera & Nicolini (Becker Friedman Institute, 2018), Levy Yeyati & Filippini (Brookings Institution, April 2025), Calvo & Vegh (1999), Willer, "Trading Fixed Income and FX in Emerging Markets" (Wiley), US Treasury ESF, Consultora 1816, EIA, S&P Global, Deloitte, BNamericas, Argus Media, Bonistas.com, FRED, CME, CBOE. Calculos del autor.
+</div>
+<div class="disc">Este articulo no constituye una recomendacion de inversion. El autor puede tener posiciones en los instrumentos mencionados. Todos los calculos se realizaron con datos de acceso publico. Reservas al 28.02.2026 (BCRA NEDD). Datos de mercado al 31.03.2026. Datos fiscales — ano completo 2025.</div>
+
+</article>
+
+<script>
+(function(){
+/* ── Global defaults ── */
+const MF='IBM Plex Mono',MS='IBM Plex Sans';
+const BLUE='#1e40af',BLUE_LT='rgba(30,64,175,0.18)';
+const ORANGE='#c2410c',ORANGE_LT='rgba(194,65,12,0.18)';
+const GREEN='#047857',GREEN_LT='rgba(4,120,87,0.15)';
+const RED='#b91c1c',NAVY='#1a1a2e',GREY='#64748b',GREY_LT='#94a3b8';
+const GRID='rgba(0,0,0,0.05)';
+
+Chart.defaults.font.family=MS;
+Chart.defaults.font.size=11;
+Chart.defaults.color=GREY;
+Chart.defaults.plugins.legend.display=false;
+Chart.defaults.elements.line.tension=0.35;
+Chart.defaults.elements.line.borderWidth=1.8;
+Chart.defaults.elements.point.radius=0;
+Chart.defaults.scale.grid.color='transparent';
+Chart.defaults.scale.grid.drawBorder=false;
+Chart.defaults.scale.ticks.font={family:MF,size:9};
+Chart.defaults.scale.ticks.color='#8896a7';
+Chart.defaults.scale.title.display=false;
+Chart.defaults.scale.title.font={family:MF,size:9};
+Chart.defaults.scale.title.color=GREY_LT;
+
+function axTitle(t){return{display:true,text:t,font:{family:MF,size:9},color:GREY_LT}}
+function refLine(y,label,col){return{type:'line',yMin:y,yMax:y,borderColor:col||'rgba(0,0,0,0.12)',borderWidth:1,borderDash:[4,3],
+  label:label?{content:label,display:true,position:'end',font:{size:8,family:MF},color:GREY_LT,backgroundColor:'#fff',padding:2}:undefined}}
+function vLine(x,label,col){return{type:'line',xMin:x,xMax:x,borderColor:col||GREY_LT,borderWidth:1,borderDash:[4,4],
+  label:label?{content:label,display:true,position:'start',font:{size:9,family:MS,weight:'500'},color:GREY_LT}:undefined}}
+function factForecast(x){return vLine(x,'',GREY_LT,{content:'\u2190 real | pron\u00f3stico \u2192',display:true,position:'start',font:{size:9,family:MF},color:GREY_LT,backgroundColor:'#fff',padding:3})}
+const noGrid={display:false};
+const BASE={responsive:true,maintainAspectRatio:false};
+
+// ── barLabels plugin (shared) ──
+const barLabels={id:'barLabels',afterDatasetsDraw(chart){
+  const ctx=chart.ctx;ctx.save();ctx.font='600 9px '+MF;ctx.textAlign='center';
+  chart.data.datasets.forEach((ds,di)=>{
+    const meta=chart.getDatasetMeta(di);if(meta.hidden)return;
+    meta.data.forEach((bar,i)=>{
+      const v=ds.data[i];if(v==null)return;
+      ctx.fillStyle=v>=0?'#333':'#999';
+      ctx.textBaseline=v>=0?'bottom':'top';
+      const fmt=typeof v==='number'&&Math.abs(v)<20?(v>=0?'+':'')+v.toFixed(1):String(v);
+      ctx.fillText(fmt,bar.x,bar.y+(v>=0?-4:4));
+    });
+  });ctx.restore();}};
+
+// ═══ FS: FISCAL SWITCH ═══
+const fsYears=['2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];
+const fsVals=[0.2,-0.2,-0.9,-1.6,-3.8,-4.2,-3.9,-2.4,-0.4,-6.5,-3.0,-2.4,-2.9,1.8,1.4];
+const fsColors=fsYears.map(y=>{const n=+y;if(n<=2015)return'#2d7dd2';if(n<=2019)return'#e0a520';if(n<=2023)return'rgba(185,28,28,0.88)';return'#7c3aed';});
+const fsBorders=fsColors.map((_,i)=>{const n=+fsYears[i];if(n<=2015)return'#1a5fa0';if(n<=2019)return'#b88510';if(n<=2023)return'#7f1d1d';return'#5b21b6';});
+new Chart(document.getElementById('fs'),{type:'bar',data:{labels:fsYears,datasets:[
+  {data:fsVals,backgroundColor:fsColors,borderColor:fsBorders,borderWidth:1,barPercentage:0.7,borderRadius:2}
+]},options:{...BASE,layout:{padding:{top:20,bottom:14}},
+  plugins:{legend:{display:false},annotation:{annotations:{
+    zero:refLine(0,null,NAVY)
+  }}},
+  scales:{x:{grid:noGrid},y:{grid:{display:false},title:axTitle('Balance primario (% PIB)')}}
+},plugins:[barLabels,{id:'fsEra',afterDraw(chart){
+  const ctx=chart.ctx,area=chart.chartArea,meta=chart.getDatasetMeta(0);if(!meta.data.length)return;
+  ctx.save();ctx.font='400 9px '+MS;ctx.textAlign='center';ctx.textBaseline='top';const yP=area.bottom+27;
+  const eras=[{s:0,e:4,t:'Kirchner II',c:'#2d7dd2'},{s:5,e:8,t:'Macri',c:'#e0a520'},{s:9,e:12,t:'Fern\u00e1ndez',c:'#b91c1c'},{s:13,e:14,t:'Milei',c:'#7c3aed'}];
+  eras.forEach(er=>{if(!meta.data[er.s]||!meta.data[er.e])return;
+    const x1=meta.data[er.s].x,x2=meta.data[er.e].x,cx=(x1+x2)/2;
+    ctx.fillStyle=er.c;ctx.fillRect(x1-2,area.bottom+24,(x2-x1)+4,2.5);
+    ctx.fillText(er.t,cx,yP);});
+  ctx.restore();}}]});
+
+// ═══ MB: MILEI BREAK 4-PANEL ═══
+const mbL=["2020-01","2020-02","2020-03","2020-04","2020-05","2020-06","2020-07","2020-08","2020-09","2020-10","2020-11","2020-12","2021-01","2021-02","2021-03","2021-04","2021-05","2021-06","2021-07","2021-08","2021-09","2021-10","2021-11","2021-12","2022-01","2022-02","2022-03","2022-04","2022-05","2022-06","2022-07","2022-08","2022-09","2022-10","2022-11","2022-12","2023-01","2023-02","2023-03","2023-04","2023-05","2023-06","2023-07","2023-08","2023-09","2023-10","2023-11","2023-12","2024-01","2024-02","2024-03","2024-04","2024-05","2024-06","2024-07","2024-08","2024-09","2024-10","2024-11","2024-12","2025-01","2025-02","2025-03","2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03"];
+const mbMilei='2023-12';
+const mbAnn={milei:{type:'line',xMin:mbMilei,xMax:mbMilei,borderColor:'#aaa',borderWidth:1,borderDash:[6,4]}};
+const mbScaleX={type:'category',ticks:{callback(v,i){if(i>=mbL.length)return'';const y=mbL[i].split('-')[0],m=mbL[i].split('-')[1];return m==='01'?y:'';},maxRotation:0,autoSkip:false,font:{family:MF,size:8},color:'#aaa'},grid:noGrid};
+const mbOpts=(title,yLabel,fmt)=>({...BASE,layout:{padding:{right:55,bottom:4}},plugins:{legend:{display:false},annotation:{annotations:mbAnn},title:{display:true,text:title,font:{family:MS,size:12,weight:'600'},color:NAVY,padding:{bottom:6}}},scales:{x:mbScaleX,y:{ticks:{font:{family:MF,size:8},color:'#888'},grid:{display:false},title:axTitle(yLabel)}}});
+const mbEndPlugin=(color,fmt)=>({id:'mbEnd'+Math.random(),afterDraw(chart){
+  const ds=chart.getDatasetMeta(0);if(!ds.data.length)return;
+  const last=ds.data.length-1,pt=ds.data[last],raw=chart.data.datasets[0].data[last];
+  if(!pt||raw==null)return;
+  const label=chart.data.labels[last];const parts=label.split('-');
+  const months=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const dateStr=months[parseInt(parts[1])-1]+' '+(parts[0]||parts[0]);
+  const ctx=chart.ctx;ctx.save();
+  ctx.font='600 10px '+MF;ctx.fillStyle=color;ctx.textAlign='left';ctx.textBaseline='middle';
+  ctx.fillText(fmt(raw),pt.x+8,pt.y);
+  ctx.font='400 8px '+MF;ctx.fillStyle='#aaa';
+  ctx.fillText(dateStr,pt.x+8,pt.y+12);
+  ctx.restore();}});
+
+// MB1: Reserves
+const mb1d=[44.9,44.8,43.6,43.6,42.6,43.2,43.4,42.8,41.4,39.9,38.7,39.4,39.5,39.5,39.6,40.3,41.9,42.4,42.6,46.2,42.9,42.8,41.5,39.7,37.6,37.0,43.1,42.0,41.6,42.8,38.2,36.7,37.6,38.7,38.0,44.6,41.4,38.7,39.1,35.0,33.0,27.9,24.1,27.8,26.9,22.6,21.5,23.1,27.6,26.7,27.1,27.6,28.7,29.0,26.4,26.7,27.2,28.6,30.2,29.6,28.3,28.1,25.0,38.9,36.9,40.0,38.9,40.0,40.4,39.4,40.3,41.2,44.5,45.6,42.1];
+new Chart(document.getElementById('mb1'),{type:'line',data:{labels:mbL,datasets:[
+  {data:mb1d,borderColor:'#7c3aed',borderWidth:2.2,backgroundColor:'rgba(124,58,237,0.12)',fill:true,
+   pointRadius:mb1d.map((_,i)=>i===mb1d.length-1?4:0),pointBackgroundColor:'#7c3aed',pointBorderColor:'#fff',pointBorderWidth:1.5}
+]},options:mbOpts('Reservas','USD miles mill.'),plugins:[mbEndPlugin('#7c3aed',v=>'$'+v.toFixed(1)+'bn')]});
+
+// MB2: Monthly Inflation
+const mbInfl=[2.3,2.0,3.3,1.5,1.5,2.2,1.9,2.7,2.8,3.8,3.2,4.0,4.0,3.6,4.8,4.1,3.3,3.2,3.0,2.5,3.5,3.5,2.5,3.8,3.9,4.7,6.7,6.0,5.1,5.3,7.4,7.0,6.2,6.3,4.9,5.1,6.0,6.6,7.7,8.4,7.8,6.0,6.3,12.4,12.7,8.3,12.8,25.5,20.6,13.2,11.0,8.8,4.2,4.6,4.0,4.2,3.5,2.7,2.4,2.7,2.2,2.4,3.7,2.8,1.5,1.6,1.9,1.9,2.1,2.3,2.5,2.8,2.9,2.9];
+const mbInflL=mbL.slice(0,mbInfl.length);
+new Chart(document.getElementById('mb2'),{type:'bar',data:{labels:mbInflL,datasets:[
+  {data:mbInfl,backgroundColor:mbInfl.map((_,i)=>i<48?'rgba(200,30,30,0.85)':'rgba(142,68,173,0.85)'),borderColor:mbInfl.map((_,i)=>i<48?'#7f1d1d':'#5b2c7a'),borderWidth:0.5,barPercentage:0.9,categoryPercentage:1,borderRadius:1}
+]},options:mbOpts('Inflacion mensual','MoM %'),plugins:[mbEndPlugin('#8E44AD',v=>v.toFixed(1)+'%')]});
+
+// MB3: Brecha
+const mb3d=[23.8,21.9,25.4,73.9,76.1,70.3,78.9,74.4,80.2,101.2,78.2,84.4,64.5,52.6,43.9,51.5,57.0,66.3,76.5,76.7,78.8,88.6,90.6,92.6,91.9,86.7,72.4,65.3,64.8,83.1,114.5,98.6,87.0,76.8,79.4,87.0,96.4,83.8,82.9,103.9,96.0,83.0,91.0,100.3,118.0,149.6,140.7,23.8,41.3,19.6,15.3,16.1,34.0,46.7,44.0,34.3,24.7,17.6,8.6,16.9,13.6,13.4,21.2,-0.4,-1.3,0.0,-3.3,-2.9,3.2,-2.0,-2.7,3.4,0.3,0.4,0.4];
+new Chart(document.getElementById('mb3'),{type:'line',data:{labels:mbL,datasets:[
+  {data:mb3d,borderColor:ORANGE,borderWidth:2.2,backgroundColor:'rgba(194,65,12,0.22)',fill:true,
+   pointRadius:mb3d.map((_,i)=>i===mb3d.length-1?4:0),pointBackgroundColor:ORANGE,pointBorderColor:'#fff',pointBorderWidth:1.5}
+]},options:mbOpts('Brecha','%'),plugins:[mbEndPlugin(ORANGE,v=>v.toFixed(1)+'%')]});
+
+// MB4: EMBI Spread
+const mb4d=[2068,2283,3803,3472,2627,2495,2263,2147,1300,1482,1410,1368,1445,1511,1589,1551,1508,1596,1591,1513,1607,1712,1914,1688,1723,1816,1718,1801,1918,2428,2398,2385,2754,2625,2248,2213,1817,1965,2276,2656,2590,2037,1980,2105,2543,2577,1982,1906,1950,1705,1439,1216,1312,1456,1507,1433,1290,984,752,635,618,780,816,726,663,701,730,829,1222,657,648,571,496,572,617];
+new Chart(document.getElementById('mb4'),{type:'line',data:{labels:mbL,datasets:[
+  {data:mb4d,borderColor:'#7c3aed',borderWidth:2.2,backgroundColor:'rgba(124,58,237,0.12)',fill:true,
+   pointRadius:mb4d.map((_,i)=>i===mb4d.length-1?4:0),pointBackgroundColor:'#7c3aed',pointBorderColor:'#fff',pointBorderWidth:1.5}
+]},options:mbOpts('Spread EMBI','pb'),plugins:[mbEndPlugin('#7c3aed',v=>v+' pb')]});
+
+function parseYM(s){const p=s.split('-');return{y:+p[0],m:+p[1]-1}}
+// ═══ C2: NIR DECOMPOSITION ═══
+const C2D=[{d:"2014-01",g:27748,au:2455.4,l:14391.6,m:4169.8,s:4019.8},{d:"2014-02",g:27546,au:2616.4,l:16176,m:12378.8,s:12228.8},{d:"2014-03",g:27007,au:2541.1,l:16397.9,m:12189.1,s:12039.1},{d:"2014-04",g:28220,au:2565.3,l:18573.6,m:14069.9,s:13919.9},{d:"2014-05",g:28542,au:2466.3,l:18902.1,m:12885.4,s:12735.4},{d:"2014-06",g:29278,au:2617.2,l:19171.6,m:12962.8,s:12812.8},{d:"2014-07",g:29003,au:2537,l:19259,m:13634.5,s:13484.5},{d:"2014-08",g:28620,au:2545.9,l:18779.2,m:12952,s:12802},{d:"2014-09",g:27866,au:2396.8,l:18362.1,m:12029,s:11879},{d:"2014-10",g:28111,au:2318.8,l:18249.5,m:10659.8,s:10509.8},{d:"2014-11",g:28911,au:2326.9,l:18935.2,m:10287.5,s:10137.5},{d:"2014-12",g:31407,au:2344.1,l:20913.9,m:10940.5,s:10790.5},{d:"2015-01",g:31452,au:2531.4,l:20647.7,m:12863.1,s:12713.1},{d:"2015-02",g:31470,au:2400.9,l:20034.3,m:8376,s:8226},{d:"2015-03",g:31490,au:2342.5,l:21124.4,m:12910.9,s:12760.9},{d:"2015-04",g:33909,au:2341.2,l:23951.6,m:15753,s:15603},{d:"2015-05",g:33283,au:2355,l:23591.3,m:14449.6,s:14299.6},{d:"2015-06",g:33851,au:2319.6,l:24345.3,m:15163.1,s:15013.1},{d:"2015-07",g:33943,au:2167.9,l:24002,m:15546.4,s:15396.4},{d:"2015-08",g:33606,au:2240.6,l:23967.5,m:15695.8,s:15545.8},{d:"2015-09",g:33257,au:2208.7,l:23605.8,m:15284.4,s:15134.4},{d:"2015-10",g:26970,au:2260.2,l:15878.1,m:6860.6,s:6710.6},{d:"2015-11",g:25615,au:2110.3,l:14354.7,m:4539.4,s:4389.4},{d:"2015-12",g:25563,au:2099.4,l:12660.5,m:3345.4,s:3195.4},{d:"2016-01",g:30074,au:2210.5,l:18761.8,m:6866.7,s:6715.3},{d:"2016-02",g:28399,au:2443.1,l:18885.3,m:3495.3,s:3342.5},{d:"2016-03",g:29572,au:2443.7,l:18340.2,m:2747.9,s:2593.7},{d:"2016-04",g:34380,au:2552.6,l:23341.5,m:9555.7,s:9400.2},{d:"2016-05",g:30171,au:2405.3,l:16916.5,m:4822.2,s:4665.3},{d:"2016-06",g:30507,au:2610.4,l:16787,m:5046.7,s:4888.3},{d:"2016-07",g:32511,au:2671,l:18326.4,m:4692.2,s:4532.4},{d:"2016-08",g:31150,au:2587.7,l:18302.9,m:10810.4,s:10591.6},{d:"2016-09",g:29902,au:2600.3,l:17364.2,m:6245.2,s:6099.8},{d:"2016-10",g:37210,au:2517.6,l:17523,m:-26.7,s:-171.2},{d:"2016-11",g:37378,au:2318.2,l:21327.4,m:5718.5,s:5575},{d:"2016-12",g:39308,au:2277,l:21410.7,m:3677.9,s:3535.3},{d:"2017-01",g:46887,au:2393,l:22595.3,m:673.6,s:532},{d:"2017-02",g:50608,au:2480.1,l:25841.7,m:-625.6,s:-766.3},{d:"2017-03",g:50522,au:2469.7,l:23837.3,m:557.4,s:417.7},{d:"2017-04",g:48217,au:2506.9,l:27015.1,m:8368.5,s:8229.8},{d:"2017-05",g:46146,au:2518.6,l:28114.6,m:11916.1,s:11778.2},{d:"2017-06",g:47995,au:2456.6,l:32522.1,m:15128.4,s:14991.5},{d:"2017-07",g:47014,au:2507.9,l:29287,m:14064.5,s:13928.6},{d:"2017-08",g:48877,au:2606.1,l:30287.5,m:14188.7,s:14053.7},{d:"2017-09",g:50237,au:2537.4,l:33263.4,m:19503.6,s:19369.6},{d:"2017-10",g:51810,au:2508.7,l:36579.1,m:23347.8,s:23214.7},{d:"2017-11",g:54563,au:2520.9,l:37782.4,m:22103.5,s:21971.3},{d:"2017-12",g:55055,au:2586.5,l:39574.7,m:24340.5,s:24209.2},{d:"2018-01",g:62024,au:2651.2,l:43203.4,m:26381.2,s:26250.9},{d:"2018-02",g:61509,au:2604.7,l:46791.8,m:33102.1,s:32972.7},{d:"2018-03",g:61726,au:2619.1,l:46386.7,m:32667.3,s:32538.9},{d:"2018-04",g:56623,au:2606.1,l:41498,m:28537.6,s:28410.1},{d:"2018-05",g:50098,au:2574.2,l:36178.9,m:22842.6,s:22716},{d:"2018-06",g:61881,au:2477.6,l:45519.2,m:16839.6,s:16701.5,t:2050},{d:"2018-07",g:57996,au:2422.9,l:41717.3,m:17608.3,s:17485.2,t:1733.1},{d:"2018-08",g:52658,au:2376.6,l:36606,m:13821.1,s:13676.5,t:-3175.8},{d:"2018-09",g:49003,au:2359.2,l:33525.8,m:11275.4,s:11120.9,t:-6843.3},{d:"2018-10",g:53955,au:2400.4,l:38560,m:9694.9,s:9566.3,t:-9509.3},{d:"2018-11",g:51193,au:2416,l:35551.3,m:9423.5,s:9287.1,t:-10902.5},{d:"2018-12",g:65786,au:2531,l:49027.8,m:17911.6,s:17354.6,t:-3500},{d:"2019-01",g:66811,au:2613,l:50091.9,m:21280.1,s:20769.9,t:-2863.6},{d:"2019-02",g:68015,au:2599.3,l:51664.2,m:20692.1,s:20163.1,t:-6183.8},{d:"2019-03",g:66187,au:2560.1,l:48156.7,m:20592.8,s:20082.5,t:-8750.9},{d:"2019-04",g:71663,au:2539.9,l:53072.2,m:20075.9,s:19818.1,t:-12000},{d:"2019-05",g:64779,au:2585.5,l:45571.1,m:18292.9,s:17835.3,t:-14601.2},{d:"2019-06",g:64278,au:2791.2,l:45804.2,m:18362,s:17846.3,t:-15377.6},{d:"2019-07",g:67899,au:2823.7,l:49087.6,m:20557.9,s:20440,t:-14000},{d:"2019-08",g:54100,au:3007.8,l:39881.7,m:20450.4,s:20347.1,t:-13927.5},{d:"2019-09",g:48703,au:2902.1,l:37000.1,m:22822.8,s:20318.4,t:-11375.2},{d:"2019-10",g:43260,au:2992.6,l:32228,m:13839.2,s:13699.5,t:-20184.7},{d:"2019-11",g:43772,au:2901.9,l:32663.6,m:23469.3,s:23296.2,t:-10374.6},{d:"2019-12",g:44848,au:3008.6,l:32854.8,m:13669.8,s:13587.3,t:-20000},{d:"2020-01",g:44917,au:3134.1,l:31784.7,m:20299.2,s:20143.2,t:-13870.8},{d:"2020-02",g:44791,au:3096.9,l:31027.9,m:11262.4,s:11142.2,t:-23407.9},{d:"2020-03",g:43561,au:3135.1,l:30070.9,m:11830.6,s:11593.5,t:-23307.6},{d:"2020-04",g:43568,au:3334.7,l:29324.6,m:11455.2,s:10935.3,t:-24183.2},{d:"2020-05",g:42589,au:3439.1,l:27889,m:9679,s:9443.3,t:-26443.6},{d:"2020-06",g:43242,au:3550.1,l:29135.7,m:10802.2,s:10614.6,t:-25820.6},{d:"2020-07",g:43386,au:3886.3,l:28746.4,m:17106.8,s:16929.4,t:-20000},{d:"2020-08",g:42842,au:3895.8,l:27500.8,m:15252.9,s:15138},{d:"2020-09",g:41379,au:3737.2,l:25605.5,m:12629.8,s:12557.2},{d:"2020-10",g:39856,au:3717.3,l:24593.7,m:5292,s:5210.6},{d:"2020-11",g:38652,au:3515.9,l:23913.9,m:6806.5,s:6700.7},{d:"2020-12",g:39387,au:3748.3,l:24679.7,m:4609.9,s:4536.2},{d:"2021-01",g:39515,au:3657.7,l:24368.2,m:11871.1,s:11799.3},{d:"2021-02",g:39518,au:3421.6,l:24207.3,m:3369.8,s:3295.7},{d:"2021-03",g:39593,au:3393.3,l:24937.1,m:5182.8,s:5103.6},{d:"2021-04",g:40263,au:3499.3,l:26182.3,m:6294.4,s:6216},{d:"2021-05",g:41872,au:3766.9,l:27957.6,m:16686.5,s:16614.2},{d:"2021-06",g:42437,au:3506.2,l:28196.1,m:16040.9,s:15932.6},{d:"2021-07",g:42582,au:3588.9,l:27739.2,m:7781.6,s:7709},{d:"2021-08",g:46180,au:3593.7,l:31177.4,m:11241.4,s:11163.6},{d:"2021-09",g:42911,au:3475.5,l:27527.1,m:14202.6,s:14120.2},{d:"2021-10",g:42817,au:3530.3,l:27330.7,m:9966.6,s:9866.3},{d:"2021-11",g:41530,au:3511.7,l:26526,m:7546.1,s:7438},{d:"2021-12",g:39662,au:3618.4,l:23884.7,m:3368.1,s:3300.7},{d:"2022-01",g:37589,au:3554.1,l:21955.5,m:1688.3,s:1615.5},{d:"2022-02",g:37018,au:3760.8,l:21024.3,m:4042,s:3974.6},{d:"2022-03",g:43137,au:3859.4,l:27662.5,m:8322.3,s:8240},{d:"2022-04",g:42007,au:3780.4,l:25898.3,m:6694.2,s:6591.6,t:-4000},{d:"2022-05",g:41561,au:3648.5,l:25764.6,m:9527.6,s:9447.9,t:-1777.6},{d:"2022-06",g:42787,au:3572.1,l:27644.9,m:10605.1,s:10486.6,t:-1331.4},{d:"2022-07",g:38232,au:3490.5,l:23212.5,m:8175.7,s:8128.1,t:-4371.7},{d:"2022-08",g:36734,au:3391.3,l:21751.2,m:6784.9,s:6758.9,t:-6393.8},{d:"2022-09",g:37625,au:3291.6,l:23241,m:10468.5,s:10372.5,t:-3341.5},{d:"2022-10",g:38676,au:3239.1,l:24163.4,m:7592,s:7220.3,t:-6828.9},{d:"2022-11",g:38009,au:3457.1,l:22975.7,m:5966.2,s:5767.3,t:-9086},{d:"2022-12",g:44598,au:3603,l:28855.4,m:10663.1,s:10496.9,t:-5000},{d:"2023-01",g:41417,au:3820.4,l:24653.7,m:7513.9,s:7438.5,t:-6474.9},{d:"2023-02",g:38709,au:3621.2,l:22080.3,m:5228.3,s:5166.4,t:-7086.1},{d:"2023-03",g:39060,au:3898.6,l:22969.2,m:6199.9,s:6092.3,t:-4602.2},{d:"2023-04",g:35001,au:3940.4,l:19767.5,m:3126.3,s:2995.1,t:-6001.4},{d:"2023-05",g:33001,au:3888.5,l:18041.3,m:1844.6,s:1774,t:-5662.7},{d:"2023-06",g:27926,au:3803.8,l:13768.5,m:-2167.1,s:-2498.4,t:-8000},{d:"2023-07",g:24092,au:3901.6,l:10306,m:-5540,s:-6093.8,t:-8085.9},{d:"2023-08",g:27818,au:3837.6,l:14555.2,m:-1363.4,s:-2139.7,t:-8998.2},{d:"2023-09",g:26925,au:3659.2,l:13643,m:-2462.5,s:-3461.3,t:-9608.3},{d:"2023-10",g:22559,au:3930.7,l:9690.7,m:-6151.9,s:-7373.1,t:-10066.9},{d:"2023-11",g:21513,au:4035.4,l:8572.2,m:-7174.2,s:-8618,t:-10733.8},{d:"2023-12",g:23073,au:4083.6,l:9817.4,m:-5889.5,s:-7555.7,t:-11464},{d:"2024-01",g:27642,au:4055.8,l:13733.7,m:-2009.6,s:-7637,t:-10599.6},{d:"2024-02",g:26690,au:4050.5,l:13268.4,m:-2488.9,s:-13040.2,t:-9614.7},{d:"2024-03",g:27127,au:4390.5,l:13783.6,m:-1642.2,s:-12988.5,t:-8673.4},{d:"2024-04",g:27578,au:4537,l:14600.7,m:-687.1,s:-12234.8,t:-7695.3},{d:"2024-05",g:28664,au:4599.3,l:15891.3,m:657.2,s:-12966.8,t:-6711.6},{d:"2024-06",g:29022,au:4608.8,l:16035.8,m:809.8,s:-13027,t:-6000},{d:"2024-07",g:26402,au:4804.5,l:11955.7,m:-3108.7,s:-16735.2,t:-8669.4},{d:"2024-08",g:26719,au:4937.7,l:12238.9,m:-3048,s:-16662.6,t:-7317.8},{d:"2024-09",g:27172,au:5219.5,l:11242.4,m:-3977.5,s:-17113.2,t:-6956.5},{d:"2024-10",g:28618,au:5421.8,l:10573.1,m:-4227.1,s:-16912,t:-5956.9},{d:"2024-11",g:30214,au:5260.9,l:11333.5,m:-3305.8,s:-15620.4,t:-3744.8},{d:"2024-12",g:29640,au:5205.8,l:12120.9,m:-3210.1,s:-15358.2,t:-2400},{d:"2025-01",g:28310,au:5568.8,l:9839.3,m:-4591.2,s:-18159.1,t:-3898.1},{d:"2025-02",g:28117,au:5616.9,l:10020.3,m:-4290.5,s:-17652.4,t:-3714.4},{d:"2025-03",g:24986,au:6183.1,l:7332.5,m:-6470.5,s:-19678.9,t:-6000},{d:"2025-04",g:38928,au:6543.9,l:18627.8,m:5216,s:-7846.6,t:-7784},{d:"2025-05",g:36919,au:6512,l:18422.3,m:4796.7,s:-8217.5,t:-8848.2},{d:"2025-06",g:39973,au:6522.9,l:21887.8,m:8047.7,s:-8792.1,t:-6263.5},{d:"2025-07",g:38866,au:6520.5,l:19774,m:6004.8,s:-10863.8,t:-8951.2},{d:"2025-08",g:39986,au:6877.9,l:20722.7,m:7127.4,s:-9735.8,t:-7828.6},{d:"2025-09",g:40374,au:7604.8,l:19930.5,m:7035.9,s:-9394.6,t:-7920.1},{d:"2025-10",g:39382,au:7884.8,l:17390.4,m:1262.1,s:-15621.7,t:-13693.9},{d:"2025-11",g:40335,au:8352.2,l:15939.6,m:171.9,s:-16785.2,t:-14784.1},{d:"2025-12",g:41167,au:8564.7,l:17477.9,m:4204.2,s:-11311.8,t:-10751.8},{d:"2026-01",g:44503,au:9333.5,l:17842.6,m:1042.3,s:-12106.2,t:-13914},{d:"2026-02",g:45566,au:10356.4,l:18245,m:2149.5,s:-11017.4,t:-12807}];
+const C2LAST=C2D.length-1;
+const c2Labels=C2D.map(d=>d.d+'-01');
+const nn=v=>v!=null?v/1000:null;
+const c2gold=C2D.map(d=>nn(d.au));
+const c2ng=C2D.map(d=>d.g!=null&&d.au!=null?(d.g-d.au)/1000:null);
+const c2liq=C2D.map(d=>nn(d.l));
+const c2mkt=C2D.map(d=>nn(d.m));
+const c2str=C2D.map(d=>nn(d.s));
+const c2td=C2D.map(d=>{if(!d.t)return null;if(d.d>='2025-04')return null;return d.t/1000;});
+const c2tl=C2D.map(d=>{if(!d.t)return null;if(d.d<'2025-04')return null;return d.t/1000;});
+const c2q1=[];C2D.forEach((d,i)=>{if(parseYM(d.d).m===0)c2q1.push(i)});
+const c2end=i=>i===C2LAST?5:0;
+new Chart(document.getElementById('c2'),{type:'bar',data:{labels:c2Labels,datasets:[
+  {type:'bar',label:'NG',data:c2ng,backgroundColor:'#aab0b8',borderColor:'#9aa0a8',borderWidth:0.5,stack:'g',order:10,barPercentage:1,categoryPercentage:1},
+  {type:'bar',label:'Au',data:c2gold,backgroundColor:'#c9a84c',borderColor:'#b89840',borderWidth:0.5,stack:'g',order:10,barPercentage:1,categoryPercentage:1},
+  {type:'line',label:'Liq',data:c2liq,borderColor:'#0ea5e9',borderWidth:1.5,
+    pointRadius:C2D.map((_,i)=>c2end(i)),pointBackgroundColor:'#0ea5e9',pointBorderColor:'#fff',pointBorderWidth:1.5,
+    tension:0.25,fill:false,order:4,spanGaps:false},
+  {type:'line',label:'Mkt',data:c2mkt,borderColor:BLUE,borderWidth:1.8,
+    pointRadius:C2D.map((_,i)=>c2end(i)),pointBackgroundColor:BLUE,pointBorderColor:'#fff',pointBorderWidth:1.5,
+    tension:0.25,fill:false,order:3,spanGaps:false},
+  {type:'line',label:'Str',data:c2str,borderColor:RED,borderWidth:1.5,borderDash:[7,4],
+    pointRadius:C2D.map((_,i)=>c2end(i)),pointBackgroundColor:RED,pointBorderColor:'#fff',pointBorderWidth:1.5,
+    tension:0.25,fill:false,order:2,spanGaps:false},
+  {type:'line',label:'TD',data:c2td,borderColor:'transparent',backgroundColor:GREEN,borderWidth:0,
+    pointRadius:C2D.map((_,i)=>c2td[i]!==null?4:0),pointStyle:'circle',pointBackgroundColor:GREEN,pointBorderColor:'#fff',pointBorderWidth:1.5,
+    tension:0,fill:false,order:1,spanGaps:false},
+  {type:'line',label:'TL',data:c2tl,borderColor:GREEN,borderWidth:1.5,borderDash:[5,3],
+    pointRadius:C2D.map((_,i)=>i===C2LAST&&c2tl[i]!==null?5:0),pointBackgroundColor:GREEN,pointBorderColor:'#fff',pointBorderWidth:2,
+    tension:0.25,fill:false,order:1,spanGaps:false},
+]},options:{...BASE,
+  layout:{padding:{right:55,top:8,bottom:14}},
+  interaction:{mode:'index',intersect:false},
+  plugins:{legend:{display:false},
+    annotation:{annotations:{
+      sba:{type:'box',xMin:'2018-06-01',xMax:'2020-07-01',backgroundColor:'rgba(220,38,38,0.03)',borderWidth:0,
+        label:{content:"SBA '18",display:true,position:{x:'center',y:'start'},font:{size:9,family:MF,weight:'500'},color:'#bbb',padding:3,yAdjust:4}},
+      eff22:{type:'box',xMin:'2022-03-01',xMax:'2025-04-01',backgroundColor:'rgba(37,99,235,0.03)',borderWidth:0,
+        label:{content:"EFF '22",display:true,position:{x:'center',y:'start'},font:{size:9,family:MF,weight:'500'},color:'#bbb',padding:3,yAdjust:4}},
+      eff25:{type:'box',xMin:'2025-04-01',xMax:'2026-06-01',backgroundColor:'rgba(5,150,105,0.03)',borderWidth:0,
+        label:{content:"EFF '25",display:true,position:{x:'center',y:'start'},font:{size:9,family:MF,weight:'500'},color:'#bbb',padding:3,yAdjust:4}},
+      zero:{type:'line',yMin:0,yMax:0,borderColor:'rgba(0,0,0,0.12)',borderWidth:1},
+    }},
+    tooltip:{
+      filter(item){return item.dataIndex<=C2LAST},
+      backgroundColor:'rgba(255,255,255,0.97)',titleColor:NAVY,bodyColor:'#444',borderColor:'#e0e0e0',borderWidth:1,
+      titleFont:{family:MS,size:12,weight:'600'},bodyFont:{family:MF,size:11},padding:10,
+      callbacks:{
+        title(items){if(!items.length||items[0].dataIndex>C2LAST)return'';const d=C2D[items[0].dataIndex];const p=d.d.split('-');
+          const mn=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+          return mn[parseInt(p[1])-1]+' '+p[0];},
+        label(item){if(item.dataIndex>C2LAST)return null;const d=C2D[item.dataIndex];const lbl=item.dataset.label;
+          if(lbl==='NG'&&d.g)return'Gross: '+(d.g/1000).toFixed(1)+'B';
+          if(lbl==='Au')return null;
+          const v=item.raw;if(v===null)return null;
+          const names={Liq:'FX Liquidity',Mkt:'NIR',Str:'Adjusted NIR',TD:'NIR IMF',TL:'NIR IMF'};
+          return(names[lbl]||lbl)+': '+(v>=0?'+':'')+v.toFixed(1)+'B';}
+      }
+    }
+  },
+  scales:{
+    x:{type:'category',
+      ticks:{display:false},
+      grid:{color(ctx){if(!ctx.tick)return'transparent';const i=ctx.index;if(i>=C2D.length)return'transparent';return parseYM(C2D[i].d).m===0?'rgba(0,0,0,0.10)':'transparent';}}},
+    y:{position:'left',ticks:{callback:v=>(v>=0?'+':'')+v,font:{family:MF,size:11},color:'#777',stepSize:10,padding:6},
+      grid:{display:false},min:-30,max:80,
+      title:{display:true,text:'USD miles mill.',font:{family:MF,size:10,weight:'500'},color:'#aaa',padding:4}}
+  }
+},plugins:[
+  {id:'c2yr',afterDraw(chart){const ctx=chart.ctx,area=chart.chartArea,meta=chart.getDatasetMeta(0);if(!meta.data.length)return;
+    ctx.save();ctx.font='600 10px '+MF;ctx.fillStyle='#555';ctx.textAlign='center';ctx.textBaseline='top';const yP=area.bottom+2;
+    for(let k=0;k<c2q1.length;k++){const si=c2q1[k],ei=k<c2q1.length-1?c2q1[k+1]-1:C2D.length-1,yr=parseYM(C2D[si].d).y;
+      if(!meta.data[si]||!meta.data[ei])continue;ctx.fillText("'"+String(yr).slice(2),(meta.data[si].x+meta.data[ei].x)/2,yP);}ctx.restore();}},
+  {id:'c2end',afterDraw(chart){const ctx=chart.ctx,d=C2D[C2LAST],yScale=chart.scales.y,meta=chart.getDatasetMeta(0);
+    if(!meta.data[C2LAST])return;const lx=meta.data[C2LAST].x,x=lx+14;
+    const metrics=[
+      {v:d.g/1000,c:'#8a8f96',t:'+'+(d.g/1000).toFixed(1)},
+      {v:d.l/1000,c:'#0ea5e9',t:'+'+(d.l/1000).toFixed(1)},
+      {v:d.m/1000,c:BLUE,t:'+'+(d.m/1000).toFixed(1)},
+      {v:d.t/1000,c:GREEN,t:(d.t/1000).toFixed(1)},
+      {v:d.s/1000,c:RED,t:(d.s/1000).toFixed(1)},
+    ];
+    ctx.save();ctx.textAlign='left';ctx.textBaseline='middle';
+    const pos=metrics.map(m=>({...m,y:yScale.getPixelForValue(m.v)}));
+    pos.sort((a,b)=>a.y-b.y);
+    for(let i=1;i<pos.length;i++){if(pos[i].y-pos[i-1].y<16)pos[i].y=pos[i-1].y+16;}
+    pos.forEach(m=>{const ry=yScale.getPixelForValue(m.v);ctx.beginPath();ctx.strokeStyle=m.c+'33';ctx.lineWidth=1;ctx.setLineDash([2,2]);
+      ctx.moveTo(lx+2,ry);ctx.lineTo(x-3,m.y);ctx.stroke();ctx.setLineDash([]);
+      ctx.font='600 12px '+MF;ctx.fillStyle=m.c;ctx.fillText(m.t,x,m.y);});ctx.restore();}}
+]});
+
+// ═══ C3: ENERGY TRADE BALANCE ═══
+const eY=['2018','2019','2020','2021','2022','2023','2024','2025','2026e','2028e','2030e'];
+const eV=[-2.1,0.1,0.7,0.4,-4.4,-0.7,5.7,7.8,9.0,11.0,12.5];
+new Chart(document.getElementById('c3'),{type:'bar',data:{labels:eY,datasets:[
+  {data:eV,backgroundColor:eV.map(v=>v>=0?'rgba(124,58,237,0.85)':'rgba(185,28,28,0.85)'),borderColor:eV.map(v=>v>=0?'#5b21b6':'#7f1d1d'),borderWidth:1,barPercentage:0.55,borderRadius:3,borderSkipped:'bottom'}
+]},options:{...BASE,layout:{padding:{top:16,bottom:4}},
+  plugins:{legend:{display:false},annotation:{annotations:{
+    zero:refLine(0),
+    fc:{type:'line',xMin:7.5,xMax:7.5,borderColor:GREY_LT,borderWidth:1,borderDash:[4,3],
+      label:{content:'\u2190 real | pron\u00f3stico \u2192',display:true,position:'start',font:{size:9,family:MF},color:GREY_LT,backgroundColor:'#fff',padding:3}}
+  }}},
+  scales:{x:{grid:noGrid},
+    y:{ticks:{callback:v=>(v>=0?'+':'')+v},grid:{display:false},title:axTitle('USD miles mill.')}}
+},plugins:[barLabels]});
+
+// ═══ C4: OIL + LITHIUM ═══
+const dY=['2020','2021','2022','2023','2024','2025','2027e','2030e'];
+const oilD=[480,520,600,660,717,870,1000,1350];
+const liD=[20,25,40,75,120,186,300,450];
+new Chart(document.getElementById('c4'),{type:'bar',data:{labels:dY,datasets:[
+  {label:'Petr\u00f3leo (miles b/d)',data:oilD,backgroundColor:'rgba(124,58,237,0.85)',borderColor:'#5b21b6',borderWidth:1,yAxisID:'y',barPercentage:0.75,categoryPercentage:0.85,borderRadius:3},
+  {label:'Litio (miles t LCE/a\u00f1o)',data:liD,backgroundColor:'rgba(185,28,28,0.85)',borderColor:'#7f1d1d',borderWidth:1,yAxisID:'y1',barPercentage:0.75,categoryPercentage:0.85,borderRadius:3},
+]},options:{...BASE,layout:{padding:{top:16,bottom:4}},
+  plugins:{annotation:{annotations:{fc:{type:'line',xMin:5.5,xMax:5.5,borderColor:GREY_LT,borderWidth:1,borderDash:[4,3],
+    label:{content:'\u2190 real | pron\u00f3stico \u2192',display:true,position:'start',font:{size:9,family:MF},color:GREY_LT,backgroundColor:'#fff',padding:3}}}}},
+  scales:{x:{grid:noGrid},
+    y:{position:'left',ticks:{color:'#7c3aed'},grid:{display:false},title:axTitle('Petr\u00f3leo, miles b/d')},
+    y1:{position:'right',ticks:{color:'#b91c1c'},grid:{drawOnChartArea:false},title:axTitle('Litio, miles t/a\u00f1o')}}
+},plugins:[barLabels]});
+
+// ═══ C5: CARRY CUMULATIVE ═══
+const cM=['2023-12','2024-01','2024-03','2024-05','2024-07','2024-09','2024-11','2025-01','2025-03','2025-05','2025-07','2025-09','2025-11','2026-01','2026-03'];
+const cR=[100,85,113,103,105,116,138,132,124,142,132,124,132,139,147];
+const cA=[100,83,109,96,96,104,122,116,107,121,111,102,108,113,118];
+new Chart(document.getElementById('c5'),{type:'line',data:{labels:cM,datasets:[
+  {label:'Rendimiento nominal',data:cR,borderColor:'#7c3aed',borderWidth:2.2,backgroundColor:'rgba(124,58,237,0.12)',fill:'+1'},
+  {label:'Ajustado por riesgo (EMBI)',data:cA,borderColor:'#b91c1c',borderWidth:2.2,backgroundColor:'rgba(185,28,28,0.12)',fill:{target:{value:100}}},
+  {label:'$100 l\u00ednea base',data:cM.map(()=>100),borderColor:GREY_LT,borderWidth:1,borderDash:[4,3],fill:false},
+]},options:{...BASE,layout:{padding:{right:50,bottom:4}},
+  scales:{x:{ticks:{maxTicksLimit:8},grid:noGrid},
+    y:{ticks:{callback:v=>'$'+v},grid:{display:false}}}
+},plugins:[{id:'el',afterDraw(c){const ctx=c.ctx,m0=c.getDatasetMeta(0),m1=c.getDatasetMeta(1),L=cR.length-1;
+  if(!m0.data[L])return;ctx.save();ctx.font='600 10px '+MF;ctx.textAlign='left';ctx.textBaseline='middle';
+  ctx.fillStyle='#7c3aed';ctx.fillText('$'+cR[L],m0.data[L].x+6,m0.data[L].y);
+  ctx.fillStyle='#b91c1c';ctx.fillText('$'+cA[L],m1.data[L].x+6,m1.data[L].y);ctx.restore()}}]});
+
+// ═══ C6: YIELD CURVE ═══
+const alTickers=['AO27','AL29','AL30','AE38','AL35','AL41'];
+const alMD=[1.50,1.62,2.02,4.63,5.44,5.86];
+const alYTM=[5.23,8.81,9.68,10.80,10.51,10.47];
+const gdTickers=['GD29','GD30','GD38','GD35','GD41','GD46'];
+const gdMD=[1.66,2.06,4.69,5.46,5.89,6.14];
+const gdYTM=[6.50,8.20,10.23,10.19,10.28,9.78];
+new Chart(document.getElementById('c6'),{type:'scatter',data:{datasets:[
+  {label:'Ley Argentina (AL)',data:alMD.map((md,i)=>({x:md,y:alYTM[i]})),backgroundColor:'#7c3aed'+'aa',borderColor:'#7c3aed',pointRadius:5,pointStyle:'circle',showLine:true,tension:0.3,fill:false},
+  {label:'Ley New York (GD)',data:gdMD.map((md,i)=>({x:md,y:gdYTM[i]})),backgroundColor:'#b91c1c'+'aa',borderColor:'#b91c1c',pointRadius:5,pointStyle:'triangle',showLine:true,tension:0.3,fill:false},
+]},options:{...BASE,layout:{padding:{bottom:4}},
+  plugins:{annotation:{annotations:{
+    brazil:refLine(6.2,'Brasil 10Y ~6.2%'),
+    colombia:refLine(7.0,'Colombia 10Y ~7.0%'),
+  }},tooltip:{callbacks:{label(it){const t=it.datasetIndex===0?alTickers[it.dataIndex]:gdTickers[it.dataIndex];return t+': YTM='+it.parsed.y.toFixed(1)+'%, MD='+it.parsed.x.toFixed(1)}}}},
+  scales:{
+    x:{min:0.5,max:6.5,title:axTitle('Modified Duration'),grid:{display:false}},
+    y:{min:4,max:12,title:axTitle('YTM, %'),ticks:{callback:v=>v+'%'},grid:{display:false}}
+  }}});
+
+// ═══ C7: REER OVERLAY ═══
+const reerT=[-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36];
+const reerMacri=[96.8,98.5,100.2,104.0,102.6,101.8,102.2,104.1,107.4,110.4,109.7,110.4,100.0,86.5,80.7,79.1,83.3,88.5,90.7,86.8,86.2,86.0,87.3,90.0,88.8,88.2,90.5,93.0,96.1,95.2,94.2,88.8,87.0,88.8,89.9,91.1,93.4,85.9,83.5,84.2,87.3,78.9,73.9,73.5,72.0,60.1,63.6,67.5,67.1];
+const reerT2=[-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
+const reerMilei=[126.3,124.5,125.5,128.0,127.8,129.4,127.0,124.6,116.9,121.6,133.8,146.6,100.0,93.9,105.8,115.7,125.0,127.3,132.5,135.3,136.8,138.0,140.1,144.2,148.0,147.6,145.3,147.6,143.3,140.3,136.9,129.1,125.0,119.9,120.2,123.5,124.9,125.7,129.8];
+new Chart(document.getElementById('c7'),{type:'line',data:{labels:reerT,datasets:[
+  {label:'Macri (t0 = Dec 2015)',data:reerMacri,borderColor:'#b91c1c',backgroundColor:'rgba(185,28,28,0.10)',fill:{target:{value:100}},},
+  {label:'Milei (t0 = Dec 2023)',data:reerT2.map((_,i)=>({x:reerT2[i],y:reerMilei[i]})),borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,0.10)',borderWidth:1.8,fill:{target:{value:100}}}
+]},options:{...BASE,layout:{padding:{bottom:4}},
+  plugins:{annotation:{annotations:{
+    t0:vLine(0,'t0'),
+    base:refLine(100)
+  }}},
+  scales:{x:{type:'linear',min:-12,max:36,ticks:{stepSize:6},grid:{display:false},title:axTitle('Meses desde inicio de presidencia')},
+    y:{grid:{display:false},title:axTitle('REER (t0 = 100)')}
+  }}});
+
+// ═══ C8: FISCAL OVERLAY ═══
+const fiscMacri=[0,31,-642,-1816,-2216,-2635,-4126,-4934,-6117,-7337,-9320,-9738,-11561,-11452,-12249,-12776,-13306,-14065,-15631,-16227,-16882,-17701,-18537,-19291,-22234,-22139,-22616,-22956,-23188,-23360,-24558,-24852,-25057,-25486,-25781,-26366,-28655];
+const fiscMilei=[-1991,-339,548,946,1099,2393,2652,3110,3545,3924,4261,4864,4314,5311,5784,6074,6395,7030,7320,7945,8493,8733,9011,9712,8789,9762,10227];
+new Chart(document.getElementById('c8'),{type:'line',data:{labels:Array.from({length:37},(_,i)=>i),datasets:[
+  {label:'Macri (t0 = Dec 2015)',data:fiscMacri.map(v=>v/1000),borderColor:'#b91c1c',backgroundColor:'rgba(185,28,28,0.15)',fill:true},
+  {label:'Milei (t0 = Dec 2023)',data:Array.from({length:fiscMilei.length},(_,i)=>({x:i,y:fiscMilei[i]/1000})),borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,0.15)',borderWidth:1.8,fill:true}
+]},options:{...BASE,layout:{padding:{bottom:4}},
+  plugins:{annotation:{annotations:{zero:refLine(0,null,NAVY)}}},
+  scales:{x:{type:'linear',min:0,max:36,ticks:{stepSize:6},grid:{display:false},title:axTitle('Meses desde inicio de presidencia')},
+    y:{grid:{display:false},title:axTitle('Balance acumulado, mil millones ARS (real)')}}
+  }});
+})();
+</script>
+</body>
+</html>
