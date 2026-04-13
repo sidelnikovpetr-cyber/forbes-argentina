@@ -247,7 +247,7 @@ NIR por metodologia del FMI: aprox. <span class="n">−$12.8 mil millones</span>
     <span><span style="display:inline-block;width:18px;height:0;border-top:2px dashed var(--red);vertical-align:middle;margin-right:3px"></span>Adjusted NIR</span>
     <span><span style="display:inline-block;width:18px;height:0;border-top:2px dashed var(--green);vertical-align:middle;margin-right:3px"></span>NIR IMF</span>
   </div>
-  <div class="cw cw-nir"><canvas id="c2"></canvas></div>
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><div class="cw cw-nir" style="min-width:700px"><canvas id="c2"></canvas></div></div>
   <div class="cf">Fuente: BCRA, IMF EFF TMU, FRED. Calculos del autor. Datos al 28.02.2026.</div>
 </div>
 
@@ -589,7 +589,7 @@ new Chart(document.getElementById('c2'),{type:'bar',data:{labels:c2Labels,datase
     pointRadius:C2D.map((_,i)=>i===C2LAST&&c2tl[i]!==null?5:0),pointBackgroundColor:GREEN,pointBorderColor:'#fff',pointBorderWidth:2,
     tension:0.25,fill:false,order:1,spanGaps:false},
 ]},options:{...BASE,
-  layout:{padding:{right:55,top:8,bottom:14}},
+  layout:{padding:{right:70,top:8,bottom:14}},
   interaction:{mode:'index',intersect:false},
   plugins:{legend:{display:false},
     annotation:{annotations:{
@@ -628,8 +628,10 @@ new Chart(document.getElementById('c2'),{type:'bar',data:{labels:c2Labels,datase
   }
 },plugins:[
   {id:'c2yr',afterDraw(chart){const ctx=chart.ctx,area=chart.chartArea,meta=chart.getDatasetMeta(0);if(!meta.data.length)return;
-    ctx.save();ctx.font='600 10px '+MF;ctx.fillStyle='#555';ctx.textAlign='center';ctx.textBaseline='top';const yP=area.bottom+2;
-    for(let k=0;k<c2q1.length;k++){const si=c2q1[k],ei=k<c2q1.length-1?c2q1[k+1]-1:C2D.length-1,yr=parseYM(C2D[si].d).y;
+    const fs=chart.width<500?8:10;
+    ctx.save();ctx.font='600 '+fs+'px '+MF;ctx.fillStyle='#555';ctx.textAlign='center';ctx.textBaseline='top';const yP=area.bottom+2;
+    const skip=chart.width<400?2:1;
+    for(let k=0;k<c2q1.length;k++){if(skip>1&&k%skip!==0&&k!==c2q1.length-1)continue;const si=c2q1[k],ei=k<c2q1.length-1?c2q1[k+1]-1:C2D.length-1,yr=parseYM(C2D[si].d).y;
       if(!meta.data[si]||!meta.data[ei])continue;ctx.fillText("'"+String(yr).slice(2),(meta.data[si].x+meta.data[ei].x)/2,yP);}ctx.restore();}},
   {id:'c2end',afterDraw(chart){const ctx=chart.ctx,d=C2D[C2LAST],yScale=chart.scales.y,meta=chart.getDatasetMeta(0);
     if(!meta.data[C2LAST])return;const lx=meta.data[C2LAST].x,x=lx+14;
